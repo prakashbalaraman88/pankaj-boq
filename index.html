@@ -1207,13 +1207,15 @@ function renderPaymentSchedule(){
 function recalcPaymentSchedule(){
   const overallAdd     = window.__TOTAL_ADD  || 0;
   const effectiveTotal = window.__NET_BILL   || PAYMENT_ORDER_TOTAL;
+  const totalRef       = REFERRAL_BONUS.reduce((s,r)=>s+r.amount,0);
+  const netAdd         = Math.max(0, overallAdd - totalRef);
   let totalRecv = 0;
   PAYMENT_SCHEDULE.forEach((p,idx)=>{
     const tr = document.querySelector(`tr[data-pidx="${idx}"]`);
     if(!tr) return;
     const inp  = tr.querySelector('input.pay-recv');
     const recv = inp ? (parseFloat(inp.value)||0) : p.received;
-    const effectiveAmt = p.tentative ? overallAdd : p.amount;
+    const effectiveAmt = p.tentative ? netAdd : p.amount;
     const pending = Math.max(0, effectiveAmt - recv);
     const pEl  = document.getElementById('pay-pend-'+idx);
     if(pEl){ pEl.textContent = pending>0 ? '₹'+fmt(pending) : '—'; pEl.style.color = pending>0 ? '#c0302a' : '#1e6b32'; }
@@ -1229,7 +1231,7 @@ function recalcPaymentSchedule(){
   const totalPend = effectiveTotal - totalRecv;
   const pctRecv   = Math.round(totalRecv / effectiveTotal * 100);
   const taEl = document.getElementById('pay-tent-amt');
-  if(taEl) taEl.textContent = '₹'+fmt(overallAdd);
+  if(taEl) taEl.textContent = '₹'+fmt(netAdd);
   const ftEl = document.getElementById('pay-foot-total');
   if(ftEl) ftEl.textContent = '₹'+fmt(effectiveTotal);
   const srEl = document.getElementById('pay-sum-recv');
