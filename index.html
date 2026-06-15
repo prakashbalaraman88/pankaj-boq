@@ -20,7 +20,7 @@
   --shadow:0 4px 20px rgba(80,60,30,.08), 0 1px 0 rgba(255,255,255,.9) inset;
  }
  *{box-sizing:border-box}
- html,body{margin:0;background:radial-gradient(1200px 700px at 80% -10%, #e0d4bc 0%, var(--bg) 60%) fixed;color:var(--text);font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+ html,body{margin:0;background:radial-gradient(1200px 700px at 80% -10%, #e0d4bc 0%, var(--bg) 60%) fixed;color:var(--text);font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
  a{color:inherit}
  .serif{font-family:'Cormorant Garamond',Georgia,serif;letter-spacing:.01em}
  .wrap{max-width:1280px;margin:0 auto;padding:48px 28px 120px}
@@ -57,7 +57,37 @@
 
  /* Layout */
  .layout{display:grid;grid-template-columns:1fr 340px;gap:28px;align-items:start}
- @media(max-width:1100px){.layout{grid-template-columns:1fr}.hero{grid-template-columns:1fr}}
+ @media(max-width:1100px){
+   .layout{grid-template-columns:1fr;display:flex;flex-direction:column}
+   .side{order:-1;position:static}
+   .hero{grid-template-columns:1fr}
+ }
+ @media(max-width:768px){
+   .wrap{padding:20px 14px 60px}
+   .hero{gap:14px;padding-bottom:14px;margin-bottom:14px}
+   .title{font-size:38px}
+   .grandbox .val{font-size:34px}
+   .grandbox .lbl{font-size:10px}
+   .toolbar{gap:6px}
+   .btn{padding:7px 10px;font-size:12px}
+   .search{min-width:160px}
+   .sec-head .t{font-size:20px}
+   .sec-head .tt{font-size:18px}
+   .tbl,.vtbl{display:block;width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+   .tbl thead,.tbl tbody,.tbl tfoot,.vtbl thead,.vtbl tbody{display:table;width:100%}
+   .cascade-params{grid-template-columns:repeat(2,1fr)}
+   .var-summary,.pay-summary{grid-template-columns:repeat(2,1fr)}
+   input.qty{width:72px}
+   input.act{width:72px}
+   input.tile-cost{width:80px}
+   input.tile-total{width:90px}
+   input.pay-recv{width:90px}
+   input.casc-qty{width:66px}
+   input.casc-rate{width:80px}
+   .actuals-section{margin-left:-14px;padding-left:11px}
+   .pay-section{margin-left:-14px;padding-left:11px}
+   .section-divider{font-size:12px;margin:28px 0 4px}
+ }
 
  /* Abstract card */
  .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
