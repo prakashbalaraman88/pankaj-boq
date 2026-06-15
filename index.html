@@ -1153,6 +1153,9 @@ function renderGrandSummary(){
   el('abs-gross',  '₹'+fmt(finalBill));
   el('abs-ref',    '− ₹'+fmt(totalRef));
   el('abs-net',    '₹'+fmt(netBill));
+  window.__NET_BILL  = netBill;
+  window.__TOTAL_ADD = totalAdd;
+  recalcPaymentSchedule();
 }
 
 function renderPaymentSchedule(){
@@ -1173,7 +1176,7 @@ function renderPaymentSchedule(){
       <td class="desc">${p.milestone}${p.comment ? `<small style="color:var(--warn);margin-top:3px">${p.comment}</small>` : ''}</td>
       <td class="num" style="color:var(--muted)">${p.pct!=null?p.pct+'%':'—'}</td>
       <td class="num" style="color:var(--muted)">${p.cum!=null?p.cum+'%':'—'}</td>
-      <td class="num" style="color:${p.tentative?'var(--warn)':'var(--gold-2)'};font-weight:600">₹${fmt(p.amount)}</td>
+      <td class="num" ${p.tentative?'id="pay-tent-amt"':''} style="color:${p.tentative?'var(--warn)':'var(--gold-2)'};font-weight:600">₹${fmt(p.amount)}</td>
       <td class="num"><input type="number" step="1" class="pay-recv" data-original="${p.received}" value="${p.received}" /></td>
       <td class="num" id="pay-pend-${idx}" style="color:${pending>0?'#c0302a':'#1e6b32'};font-weight:600">${pending>0?'₹'+fmt(pending):'—'}</td>
     </tr>`;
@@ -1192,7 +1195,7 @@ function renderPaymentSchedule(){
       <tbody>${rows}</tbody>
       <tfoot><tr class="group">
         <td></td><td>Total</td><td class="num">100%</td><td></td>
-        <td class="num">₹${fmt(PAYMENT_ORDER_TOTAL)}</td>
+        <td class="num" id="pay-foot-total">₹${fmt(PAYMENT_ORDER_TOTAL)}</td>
         <td class="num" id="pay-sum-recv">₹0</td>
         <td class="num" id="pay-sum-pend">₹0</td>
       </tr></tfoot>
@@ -1202,17 +1205,20 @@ function renderPaymentSchedule(){
 }
 
 function recalcPaymentSchedule(){
+  const overallAdd     = window.__TOTAL_ADD  || 0;
+  const effectiveTotal = window.__NET_BILL   || PAYMENT_ORDER_TOTAL;
   let totalRecv = 0;
   PAYMENT_SCHEDULE.forEach((p,idx)=>{
     const tr = document.querySelector(`tr[data-pidx="${idx}"]`);
     if(!tr) return;
     const inp  = tr.querySelector('input.pay-recv');
     const recv = inp ? (parseFloat(inp.value)||0) : p.received;
-    const pending = Math.max(0, p.amount - recv);
+    const effectiveAmt = p.tentative ? overallAdd : p.amount;
+    const pending = Math.max(0, effectiveAmt - recv);
     const pEl  = document.getElementById('pay-pend-'+idx);
     if(pEl){ pEl.textContent = pending>0 ? '₹'+fmt(pending) : '—'; pEl.style.color = pending>0 ? '#c0302a' : '#1e6b32'; }
-    const isFullyPaid = recv >= p.amount && p.amount > 0;
-    const isPartial   = recv > 0 && recv < p.amount;
+    const isFullyPaid = recv >= effectiveAmt && effectiveAmt > 0;
+    const isPartial   = recv > 0 && recv < effectiveAmt;
     if(!p.tentative){
       tr.style.background = isFullyPaid ? 'rgba(30,107,50,.06)' : isPartial ? 'rgba(184,134,11,.05)' : '';
       const dot = tr.querySelector('td:first-child span');
@@ -1220,8 +1226,12 @@ function recalcPaymentSchedule(){
     }
     totalRecv += recv;
   });
-  const totalPend = PAYMENT_ORDER_TOTAL - totalRecv;
-  const pctRecv   = Math.round(totalRecv / PAYMENT_ORDER_TOTAL * 100);
+  const totalPend = effectiveTotal - totalRecv;
+  const pctRecv   = Math.round(totalRecv / effectiveTotal * 100);
+  const taEl = document.getElementById('pay-tent-amt');
+  if(taEl) taEl.textContent = '₹'+fmt(overallAdd);
+  const ftEl = document.getElementById('pay-foot-total');
+  if(ftEl) ftEl.textContent = '₹'+fmt(effectiveTotal);
   const srEl = document.getElementById('pay-sum-recv');
   const spEl = document.getElementById('pay-sum-pend');
   if(srEl) srEl.textContent = '₹'+fmt(totalRecv);
@@ -1241,9 +1251,9 @@ function recalcPaymentSchedule(){
       <div class="s">${100-pctRecv}% remaining</div>
     </div>
     <div class="var-card net">
-      <div class="k">Order Total</div>
-      <div class="v">₹${fmt(PAYMENT_ORDER_TOTAL)}</div>
-      <div class="s">Per contract</div>
+      <div class="k">Net Order Total</div>
+      <div class="v">₹${fmt(effectiveTotal)}</div>
+      <div class="s">BOQ + additions − referral</div>
     </div>`;
 }
 
