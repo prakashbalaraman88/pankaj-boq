@@ -1142,6 +1142,16 @@ function renderGrandSummary(){
       <div class="v">₹${fmt(netBill)}</div>
       <div class="s">After referral deductions</div>
     </div>`;
+
+  const tSignAbs = tilesAdd >= 0 ? '+ ' : '− ';
+  const el = (id, txt) => { const e = document.getElementById(id); if(e) e.textContent = txt; };
+  el('abs-var',    '+ ₹'+fmt(addV));
+  el('abs-casc',   '+ ₹'+fmt(addC));
+  el('abs-tiles',  tSignAbs+'₹'+fmt(Math.abs(tilesAdd)));
+  el('abs-addtot', (totalAdd>=0?'+ ':'− ')+'₹'+fmt(Math.abs(totalAdd)));
+  el('abs-gross',  '₹'+fmt(finalBill));
+  el('abs-ref',    '− ₹'+fmt(totalRef));
+  el('abs-net',    '₹'+fmt(netBill));
 }
 
 function renderPaymentSchedule(){
@@ -1263,7 +1273,28 @@ function renderAbstract(){
     <div class="sub"><span>Add 7% Plumbing</span><b id="finPlumb">₹0</b></div>
     <div class="sub total"><span>Finishing + Plumbing</span><b id="finAfterSide">₹0</b></div>
 
-    <div class="sub total" style="margin-top:16px;border-top:1px solid var(--gold);padding-top:14px"><span>Grand Total</span><b id="grandSide">₹0</b></div>
+    <div class="sub total" style="margin-top:16px;border-top:1px solid var(--gold);padding-top:14px"><span>Grand Total (BOQ)</span><b id="grandSide">₹0</b></div>
+
+    <h4 style="margin-top:24px;color:var(--accent)">Additional Claims</h4>
+    <div class="line">
+      <div class="code" style="color:var(--accent)">+</div>
+      <div>Variance (MB)</div>
+      <div class="amt" id="abs-var">₹0</div>
+    </div>
+    <div class="line">
+      <div class="code" style="color:var(--accent)">+</div>
+      <div>Cascade Claims</div>
+      <div class="amt" id="abs-casc">₹0</div>
+    </div>
+    <div class="line">
+      <div class="code" style="color:var(--accent)">±</div>
+      <div>Flooring Variance</div>
+      <div class="amt" id="abs-tiles">₹0</div>
+    </div>
+    <div class="sub" style="border-top:1px solid var(--accent);margin-top:4px;padding-top:10px"><span>Total Additional</span><b id="abs-addtot">₹0</b></div>
+    <div class="sub total" style="margin-top:6px;border-top:1px solid var(--accent);padding-top:12px"><span>Gross Bill</span><b id="abs-gross">₹0</b></div>
+    <div class="sub" style="color:var(--good)"><span>Referral Deduction</span><b id="abs-ref" style="color:var(--good)">₹0</b></div>
+    <div class="sub total" style="margin-top:8px;border-top:2px solid var(--gold);padding-top:14px;font-size:15px"><span>Net Bill to Client</span><b id="abs-net">₹0</b></div>
   `;
 }
 
