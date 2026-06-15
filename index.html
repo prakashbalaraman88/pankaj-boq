@@ -1,0 +1,1598 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Pankaj Residence · BOQ — Maya Architects</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<style>
+ :root{
+  --bg:#f0e8d8; --bg-2:#e6dccc; --panel:#fefcf7; --panel-2:#f6f0e4;
+  --line:#ddd3c0; --line-2:#cec3ae;
+  --text:#1c1810; --muted:#6b5e4e; --dim:#9e8d7a;
+  --gold:#b8860b; --gold-2:#7d5a08;
+  --accent:#2a5f88;
+  --good:#1e6b32; --warn:#c47210; --danger:#c0302a;
+  --radius:14px;
+  --shadow:0 4px 20px rgba(80,60,30,.08), 0 1px 0 rgba(255,255,255,.9) inset;
+ }
+ *{box-sizing:border-box}
+ html,body{margin:0;background:radial-gradient(1200px 700px at 80% -10%, #e0d4bc 0%, var(--bg) 60%) fixed;color:var(--text);font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+ a{color:inherit}
+ .serif{font-family:'Cormorant Garamond',Georgia,serif;letter-spacing:.01em}
+ .wrap{max-width:1280px;margin:0 auto;padding:48px 28px 120px}
+
+ /* Header */
+ .hero{display:grid;grid-template-columns:1.3fr 1fr;gap:28px;align-items:end;border-bottom:1px solid var(--line);padding-bottom:28px;margin-bottom:28px}
+ .eyebrow{font-size:12px;letter-spacing:.28em;color:var(--gold);text-transform:uppercase;font-weight:600}
+ .title{font-family:'Cormorant Garamond',serif;font-size:56px;line-height:1.02;margin:.25em 0 .15em;font-weight:600}
+ .title em{font-style:italic;color:var(--gold-2)}
+ .subtitle{color:var(--muted);font-size:15px}
+ .meta{display:flex;gap:24px;margin-top:14px;flex-wrap:wrap}
+ .meta div{font-size:13px;color:var(--dim)}
+ .meta div b{color:var(--text);font-weight:500;display:block;font-size:14px}
+
+ .grandbox{background:linear-gradient(180deg,var(--panel) 0%,var(--panel-2) 100%);border:1px solid var(--line);border-radius:var(--radius);padding:22px 24px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+ .grandbox::before{content:"";position:absolute;inset:0;background:radial-gradient(400px 180px at 100% 0%,rgba(184,134,11,.08),transparent 60%);pointer-events:none}
+ .grandbox .lbl{font-size:11px;letter-spacing:.24em;color:var(--gold);text-transform:uppercase;font-weight:600}
+ .grandbox .val{font-family:'Cormorant Garamond',serif;font-size:44px;font-weight:600;color:var(--text);margin-top:4px}
+ .grandbox .val .cur{color:var(--gold-2);margin-right:6px}
+ .grandbox .row{display:flex;justify-content:space-between;margin-top:10px;font-size:13px;color:var(--muted)}
+ .grandbox .row span:last-child{color:var(--text);font-variant-numeric:tabular-nums}
+ .delta{font-size:12px;color:var(--dim);margin-top:10px}
+
+ /* Toolbar */
+ .toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:0 0 18px}
+ .btn{background:var(--panel);border:1px solid var(--line);color:var(--text);padding:9px 14px;border-radius:10px;font-size:13px;cursor:pointer;transition:all .15s}
+ .btn:hover{border-color:var(--gold);color:var(--gold-2)}
+ .btn.primary{background:linear-gradient(180deg,var(--gold),var(--gold-2));color:#fffcf7;border-color:transparent;font-weight:600}
+ .btn.primary:hover{filter:brightness(1.1);color:#fffcf7}
+ .search{flex:1;min-width:220px;display:flex;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:0 12px}
+ .search input{flex:1;background:transparent;border:0;color:var(--text);font:inherit;font-size:13px;padding:10px 8px;outline:none}
+ .pill{display:inline-flex;align-items:center;gap:6px;font-size:11px;color:var(--muted);padding:4px 9px;border:1px solid var(--line);border-radius:999px}
+ .pill b{color:var(--gold-2);font-weight:600}
+
+ /* Layout */
+ .layout{display:grid;grid-template-columns:1fr 340px;gap:28px;align-items:start}
+ @media(max-width:1100px){.layout{grid-template-columns:1fr}.hero{grid-template-columns:1fr}}
+
+ /* Abstract card */
+ .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+ .card h3{margin:0;padding:18px 22px;border-bottom:1px solid var(--line);font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;letter-spacing:.01em;display:flex;align-items:center;gap:10px}
+ .card h3 .badge{font-family:Inter;font-size:10px;letter-spacing:.22em;color:var(--gold);border:1px solid var(--gold);padding:2px 8px;border-radius:999px;font-weight:600}
+ .abs{padding:10px 22px 18px}
+ .abs .line{display:grid;grid-template-columns:28px 1fr auto;gap:10px;padding:10px 0;border-bottom:1px dashed var(--line);align-items:baseline;font-size:14px}
+ .abs .line:last-child{border-bottom:0}
+ .abs .line .code{color:var(--gold);font-weight:600;font-size:12px;letter-spacing:.12em}
+ .abs .line .amt{font-variant-numeric:tabular-nums;color:var(--text)}
+ .abs .sub{padding-top:12px;margin-top:8px;border-top:1px solid var(--line);display:flex;justify-content:space-between;font-size:13px;color:var(--muted)}
+ .abs .sub b{color:var(--text);font-variant-numeric:tabular-nums}
+ .abs .sub.total{margin-top:6px;color:var(--gold-2);font-size:15px}
+ .abs h4{margin:18px 0 6px;font-size:11px;letter-spacing:.26em;color:var(--dim);font-weight:600;text-transform:uppercase}
+
+ /* Rates */
+ .rates{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;padding:18px 22px}
+ .rate{background:var(--bg-2);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+ .rate .k{font-size:11px;letter-spacing:.16em;color:var(--dim);text-transform:uppercase}
+ .rate .v{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--gold-2);font-weight:600;margin-top:2px}
+ .rate .u{font-size:11px;color:var(--muted);margin-left:4px}
+
+ /* Sections */
+ section.boq{margin-top:26px}
+ .sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:14px;padding:14px 0;border-bottom:1px solid var(--line);margin-bottom:12px}
+ .sec-head .t{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:600}
+ .sec-head .t small{font-family:Inter;font-size:11px;letter-spacing:.26em;color:var(--gold);margin-left:10px;font-weight:600}
+ .sec-head .tt{font-variant-numeric:tabular-nums;color:var(--gold-2);font-family:'Cormorant Garamond',serif;font-size:24px}
+
+ .tbl{width:100%;border-collapse:collapse}
+ .tbl th{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--dim);font-weight:600;padding:10px 8px;border-bottom:1px solid var(--line);text-align:left}
+ .tbl th.num{text-align:right}
+ .tbl td{padding:14px 8px;border-bottom:1px solid var(--line);font-size:13.5px;vertical-align:top}
+ .tbl td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+ .tbl tr:hover td{background:rgba(255,255,255,.012)}
+ .tbl .code{color:var(--gold);font-weight:600;font-size:12px;letter-spacing:.1em;white-space:nowrap;min-width:52px}
+ .tbl .desc{color:var(--text);max-width:640px;line-height:1.55}
+ .tbl .desc small{display:block;color:var(--dim);font-size:11.5px;margin-top:3px}
+ .tbl .unit{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.1em}
+ .tbl .rate-cell{color:var(--muted)}
+ .tbl .amt{color:var(--text);font-weight:500}
+ .tbl tr.group td{background:linear-gradient(90deg,rgba(184,134,11,.07),transparent);color:var(--gold-2);font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;letter-spacing:.02em;padding:12px 8px;border-bottom:1px solid var(--line-2)}
+ .tbl tr.sub td{background:rgba(42,95,136,.05);color:var(--accent);font-size:12px;letter-spacing:.16em;text-transform:uppercase;padding:9px 8px;font-weight:600}
+ .tbl tr.ro td{opacity:.5}
+ .tbl tr.changed td{background:rgba(184,134,11,.06)}
+
+ input.qty{background:var(--bg-2);border:1px solid var(--line-2);color:var(--gold-2);font:inherit;font-size:13px;font-weight:600;width:96px;padding:6px 10px;border-radius:8px;text-align:right;font-variant-numeric:tabular-nums;outline:none;transition:border-color .12s}
+ input.qty:focus{border-color:var(--gold)}
+ input.qty.ro{color:var(--dim);font-style:italic}
+ .qcell{display:flex;align-items:center;gap:6px;justify-content:flex-end}
+ .qcell .origin{font-size:10px;color:var(--dim)}
+
+ /* Sticky side */
+ .side{position:sticky;top:20px}
+
+ .foot{margin-top:56px;padding-top:22px;border-top:1px solid var(--line);display:flex;justify-content:space-between;color:var(--dim);font-size:12px}
+ .watermark{font-family:'Cormorant Garamond',serif;font-size:15px;color:var(--muted)}
+ .watermark b{color:var(--gold-2);font-weight:600}
+
+ /* print & pdf */
+ @media print{
+   body{background:#0b0d12 !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+   .toolbar{display:none}
+   .layout{grid-template-columns:1fr 300px}
+   section.boq{page-break-inside:avoid}
+   .card{page-break-inside:avoid}
+ }
+ /* =========================================================
+    PDF MODE — Light beige theme, solid colors for html2canvas capture.
+    No CSS variables, no gradients, no fixed backgrounds.
+    ========================================================= */
+ html.pdf-mode-html,html.pdf-mode-html body{background:#f0e8d8 !important;background-attachment:scroll !important;background-image:none !important}
+ body.pdf-mode{background:#f0e8d8 !important;background-attachment:scroll !important;background-image:none !important;color:#1c1810 !important;padding:0 !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ body.pdf-mode .toolbar,body.pdf-mode .vars-bar{display:none !important}
+ body.pdf-mode .wrap{padding:22px 26px 30px !important;max-width:1180px !important;background:#f0e8d8 !important}
+
+ /* Hero */
+ body.pdf-mode .hero{grid-template-columns:1.4fr 1fr;gap:18px;padding-bottom:18px;margin-bottom:22px;border-bottom:1px solid #ddd3c0 !important}
+ body.pdf-mode .title{font-size:42px;color:#1c1810 !important}
+ body.pdf-mode .title em{color:#7d5a08 !important}
+ body.pdf-mode .eyebrow{color:#7d5a08 !important}
+ body.pdf-mode .subtitle{color:#6b5e4e !important}
+ body.pdf-mode .meta div{color:#6b5e4e !important}
+ body.pdf-mode .meta div b{color:#1c1810 !important}
+
+ /* Grand box */
+ body.pdf-mode .grandbox{background:#f6f0e4 !important;border:1px solid #ddd3c0 !important;box-shadow:none !important;color:#1c1810 !important}
+ body.pdf-mode .grandbox::before{display:none !important}
+ body.pdf-mode .grandbox .lbl{color:#7d5a08 !important}
+ body.pdf-mode .grandbox .val{font-size:34px;color:#1c1810 !important}
+ body.pdf-mode .grandbox .val .cur{color:#7d5a08 !important}
+ body.pdf-mode .grandbox .row{color:#6b5e4e !important}
+ body.pdf-mode .grandbox .row span:last-child{color:#1c1810 !important}
+ body.pdf-mode .grandbox .delta{color:#6b5e4e !important}
+
+ /* Layout */
+ body.pdf-mode .layout{grid-template-columns:1fr !important;gap:18px}
+ body.pdf-mode .side{position:static;margin-top:0}
+
+ /* Cards */
+ body.pdf-mode .card{background:#fefcf7 !important;border:1px solid #ddd3c0 !important;box-shadow:none !important;color:#1c1810 !important;page-break-inside:avoid;break-inside:avoid}
+ body.pdf-mode .card h3{color:#1c1810 !important;border-bottom:1px solid #ddd3c0 !important}
+ body.pdf-mode .card h3 .badge{color:#7d5a08 !important;border-color:#b8860b !important}
+
+ /* Section headers */
+ body.pdf-mode section.boq{margin-top:22px;page-break-inside:auto;break-inside:auto}
+ body.pdf-mode .sec-head{padding:12px 0;border-bottom:1px solid #ddd3c0 !important}
+ body.pdf-mode .sec-head .t{font-size:24px;color:#1c1810 !important}
+ body.pdf-mode .sec-head .t small{color:#7d5a08 !important}
+ body.pdf-mode .sec-head .tt{color:#7d5a08 !important;font-size:22px}
+
+ /* Basic-rate cards */
+ body.pdf-mode .rates{grid-template-columns:repeat(3,1fr);padding:14px 18px}
+ body.pdf-mode .rate{background:#e6dccc !important;border:1px solid #ddd3c0 !important;color:#1c1810 !important}
+ body.pdf-mode .rate .k{color:#6b5e4e !important}
+ body.pdf-mode .rate .v{color:#7d5a08 !important;font-size:22px}
+ body.pdf-mode .rate .u{color:#6b5e4e !important}
+
+ /* Tables — main BOQ */
+ body.pdf-mode .tbl{background:transparent !important}
+ body.pdf-mode .tbl th{background:#e6dccc !important;color:#4a3c28 !important;border-bottom:1px solid #cec3ae !important;font-size:9.5px;padding:9px 6px}
+ body.pdf-mode .tbl td{border-bottom:1px solid #ddd3c0 !important;color:#1c1810 !important;font-size:11.5px;padding:9px 6px}
+ body.pdf-mode .tbl .code{color:#7d5a08 !important}
+ body.pdf-mode .tbl .desc{color:#1c1810 !important;max-width:none}
+ body.pdf-mode .tbl .desc small{color:#6b5e4e !important}
+ body.pdf-mode .tbl .unit{color:#6b5e4e !important}
+ body.pdf-mode .tbl .rate-cell{color:#6b5e4e !important}
+ body.pdf-mode .tbl .amt{color:#1c1810 !important}
+ body.pdf-mode .tbl tr.group td{background:#f0e4c8 !important;color:#7d5a08 !important;border-bottom:1px solid #cec3ae !important;font-size:16px}
+ body.pdf-mode .tbl tr.sub td{background:#e8f0f6 !important;color:#2a5f88 !important;border-bottom:1px solid #bfd4e0 !important;font-size:11px}
+ body.pdf-mode .tbl tr.ro td{color:#9e8d7a !important;opacity:1}
+ body.pdf-mode .tbl tr,body.pdf-mode .vtbl tr{page-break-inside:avoid}
+ body.pdf-mode .tbl thead,body.pdf-mode .vtbl thead{display:table-header-group}
+ body.pdf-mode .tbl tr:hover td,body.pdf-mode .vtbl tr:hover td{background:transparent !important}
+
+ /* Variance table */
+ body.pdf-mode .vtbl th{background:#e6dccc !important;color:#4a3c28 !important;border-bottom:1px solid #cec3ae !important;font-size:9.5px;padding:9px 5px}
+ body.pdf-mode .vtbl td{border-bottom:1px solid #ddd3c0 !important;color:#1c1810 !important;font-size:11.5px;padding:10px 5px}
+ body.pdf-mode .vtbl .desc{color:#1c1810 !important;max-width:none}
+ body.pdf-mode .vtbl .desc small{color:#6b5e4e !important}
+ body.pdf-mode .vtbl td.boq{color:#6b5e4e !important}
+ body.pdf-mode .vtbl .unit{color:#6b5e4e !important}
+ body.pdf-mode .vtbl .var-pos{color:#c0302a !important;font-weight:700}
+ body.pdf-mode .vtbl .var-neg{color:#1e6b32 !important}
+ body.pdf-mode .vtbl .var-zero{color:#9e8d7a !important}
+ body.pdf-mode .vtbl .add-amt{color:#c0302a !important;font-weight:700}
+
+ /* Variance groups & summary */
+ body.pdf-mode .var-group{margin-top:18px}
+ body.pdf-mode .var-group h4{color:#7d5a08 !important;border-bottom:1px solid #ddd3c0 !important;font-size:20px}
+ body.pdf-mode .var-group h4 span{color:#1c1810 !important}
+ body.pdf-mode .var-summary{grid-template-columns:repeat(4,1fr);gap:10px;margin:8px 0 24px}
+ body.pdf-mode .var-card{background:#fefcf7 !important;border:1px solid #ddd3c0 !important;box-shadow:none !important;color:#1c1810 !important}
+ body.pdf-mode .var-card .k{color:#6b5e4e !important}
+ body.pdf-mode .var-card .v{font-size:22px;color:#1c1810 !important}
+ body.pdf-mode .var-card.add .v{color:#c0302a !important}
+ body.pdf-mode .var-card.save .v{color:#1e6b32 !important}
+ body.pdf-mode .var-card.net .v{color:#7d5a08 !important}
+ body.pdf-mode .var-card .s{color:#6b5e4e !important}
+ body.pdf-mode .var-legend{color:#6b5e4e !important;border-top:1px dashed #cec3ae !important}
+
+ /* Cascade */
+ body.pdf-mode .cascade-intro{background:#f6f0e4 !important;color:#1c1810 !important;border-left:3px solid #b8860b !important;background-image:none !important}
+ body.pdf-mode .cascade-intro b{color:#7d5a08 !important}
+ body.pdf-mode .cascade-params{grid-template-columns:repeat(5,1fr)}
+ body.pdf-mode .cparam{background:#e6dccc !important;border:1px solid #ddd3c0 !important;color:#1c1810 !important}
+ body.pdf-mode .cparam .k{color:#6b5e4e !important}
+ body.pdf-mode .cparam .v{color:#7d5a08 !important;font-size:18px}
+
+ /* Inputs become plain bold text in PDF */
+ body.pdf-mode input.qty,body.pdf-mode input.act,body.pdf-mode input.rate,body.pdf-mode input.casc-qty,body.pdf-mode input.casc-rate,body.pdf-mode input.tile-cost,body.pdf-mode input.tile-total,body.pdf-mode input.pay-recv{
+   border:none !important;background:transparent !important;padding:0 !important;
+   color:#7d5a08 !important;width:auto !important;font-weight:700;font-variant-numeric:tabular-nums
+ }
+
+ /* Justifications — textarea hidden, replaced by .pdf-just-text div */
+ body.pdf-mode .justify-box{border-top:1px solid #ddd3c0 !important;padding-top:6px;margin-top:6px}
+ body.pdf-mode .justify-box[open]>summary,body.pdf-mode .justify-box>summary{color:#b8860b !important;font-size:10px;pointer-events:none;letter-spacing:.18em}
+ body.pdf-mode .justify-box>summary .hint,body.pdf-mode .justify-box>summary::before{display:none !important}
+ body.pdf-mode .justify-box textarea{display:none !important}
+ body.pdf-mode .pdf-just-text{
+   white-space:pre-wrap;padding:10px 12px;border-radius:8px;font-size:11px;line-height:1.6;
+   margin-top:6px;display:block;font-family:inherit;
+   color:#1c1810 !important;background:#e6dccc !important;border:1px solid #cec3ae !important
+ }
+
+ /* Sidebar abstract */
+ body.pdf-mode .abs{padding:12px 22px 18px}
+ body.pdf-mode .abs .line{border-bottom:1px dashed #ddd3c0 !important;font-size:13px}
+ body.pdf-mode .abs .line .code{color:#7d5a08 !important}
+ body.pdf-mode .abs .line>div:nth-child(2){color:#1c1810 !important}
+ body.pdf-mode .abs .line .amt{color:#1c1810 !important}
+ body.pdf-mode .abs .sub{color:#6b5e4e !important;border-top:1px solid #ddd3c0 !important}
+ body.pdf-mode .abs .sub b{color:#1c1810 !important}
+ body.pdf-mode .abs .sub.total{color:#7d5a08 !important}
+ body.pdf-mode .abs h4{color:#6b5e4e !important;letter-spacing:.18em}
+
+ /* Tiles diff panel */
+ body.pdf-mode .tiles-diff{background:#f6f0e4 !important;border:1px solid #ddd3c0 !important}
+ body.pdf-mode .tiles-diff .lbl{color:#6b5e4e !important}
+ body.pdf-mode .tiles-diff .td-sep{color:#9e8d7a !important}
+
+ /* Footer */
+ body.pdf-mode .foot{color:#6b5e4e !important;border-top:1px solid #ddd3c0 !important}
+
+ /* Page break tuning */
+ body.pdf-mode .var-card,body.pdf-mode .cparam,body.pdf-mode .rate,body.pdf-mode .grandbox,body.pdf-mode .var-group,body.pdf-mode .justify-box,body.pdf-mode .cascade-intro{page-break-inside:avoid;break-inside:avoid}
+ .pdf-overlay{position:fixed;inset:0;background:rgba(240,232,218,.94);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;z-index:9999;color:var(--gold-2);font-family:'Cormorant Garamond',serif;font-size:28px}
+ .pdf-overlay.on{display:flex}
+ .pdf-overlay .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--gold);margin:0 4px;animation:bl 1s infinite}
+ .pdf-overlay .dot:nth-child(2){animation-delay:.2s}
+ .pdf-overlay .dot:nth-child(3){animation-delay:.4s}
+ @keyframes bl{0%,80%,100%{opacity:.2}40%{opacity:1}}
+
+ /* Variance */
+ .var-summary{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px;margin:4px 0 22px}
+ .var-card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;box-shadow:var(--shadow)}
+ .var-card .k{font-size:10px;letter-spacing:.22em;color:var(--dim);text-transform:uppercase;font-weight:600}
+ .var-card .v{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:600;margin-top:6px;font-variant-numeric:tabular-nums}
+ .var-card.add .v{color:#c0302a}
+ .var-card.save .v{color:#1e6b32}
+ .var-card.net .v{color:var(--gold-2)}
+ .var-card .s{font-size:11px;color:var(--muted);margin-top:2px}
+ @media(max-width:800px){.var-summary{grid-template-columns:repeat(2,1fr)}}
+
+ .var-group{margin-top:18px}
+ .var-group h4{margin:0 0 10px;font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--gold-2);font-weight:600;border-bottom:1px solid var(--line-2);padding-bottom:8px;display:flex;justify-content:space-between;align-items:baseline}
+ .var-group h4 span{font-family:Inter;font-size:12px;color:var(--muted);font-weight:500;font-variant-numeric:tabular-nums}
+
+ .vtbl{width:100%;border-collapse:collapse}
+ .vtbl th{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);font-weight:600;padding:10px 6px;border-bottom:1px solid var(--line);text-align:left}
+ .vtbl th.num{text-align:right}
+ .vtbl td{padding:12px 6px;border-bottom:1px solid var(--line);font-size:13px;vertical-align:top}
+ .vtbl td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+ .vtbl td.desc{color:var(--text);max-width:320px;line-height:1.5}
+ .vtbl td.desc small{display:block;color:var(--dim);font-size:11px;margin-top:3px}
+ .vtbl td.boq{color:var(--muted)}
+ .vtbl .var-pos{color:#c0302a;font-weight:600}
+ .vtbl .var-neg{color:#1e6b32;font-weight:600}
+ .vtbl .var-zero{color:var(--dim)}
+ .vtbl .add-amt{font-weight:600}
+ .vtbl tr:hover td{background:rgba(255,255,255,.012)}
+ input.act{background:var(--bg-2);border:1px solid var(--line-2);color:var(--accent);font:inherit;font-size:13px;font-weight:600;width:90px;padding:6px 10px;border-radius:8px;text-align:right;font-variant-numeric:tabular-nums;outline:none}
+ input.act:focus{border-color:var(--accent)}
+ input.rate{background:transparent;border:1px dashed transparent;color:var(--muted);font:inherit;font-size:12px;width:70px;padding:4px 6px;border-radius:6px;text-align:right;font-variant-numeric:tabular-nums;outline:none}
+ input.rate:hover,input.rate:focus{border-color:var(--line-2);background:var(--bg-2);color:var(--text)}
+
+ .var-legend{display:flex;gap:24px;flex-wrap:wrap;margin-top:18px;padding-top:14px;border-top:1px dashed var(--line);font-size:11px;color:var(--dim)}
+ .var-legend i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:6px;vertical-align:middle}
+ .var-legend .pos{background:#c0302a}
+ .var-legend .neg{background:#1e6b32}
+
+ /* Cascade */
+ .cascade-intro{background:linear-gradient(90deg,rgba(184,134,11,.05),transparent);border-left:3px solid var(--gold);padding:14px 18px;border-radius:0 8px 8px 0;color:var(--muted);font-size:13px;line-height:1.6;margin-bottom:16px}
+ .cascade-intro b{color:var(--gold-2);font-weight:600}
+ .cascade-params{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:14px}
+ @media(max-width:900px){.cascade-params{grid-template-columns:repeat(2,1fr)}}
+ .cparam{background:var(--bg-2);border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+ .cparam .k{font-size:10px;letter-spacing:.16em;color:var(--dim);text-transform:uppercase}
+ .cparam .v{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--gold-2);font-weight:600;margin-top:2px}
+
+ /* Cascade cell inputs */
+ #cascadeTbl input.casc-qty{background:var(--bg-2);border:1px solid var(--line-2);color:var(--accent);font:inherit;font-size:13px;font-weight:600;width:80px;padding:6px 10px;border-radius:8px;text-align:right;font-variant-numeric:tabular-nums;outline:none}
+ #cascadeTbl input.casc-rate{background:var(--bg-2);border:1px solid var(--line-2);color:var(--gold-2);font:inherit;font-size:13px;font-weight:600;width:100px;padding:6px 10px;border-radius:8px;text-align:right;font-variant-numeric:tabular-nums;outline:none}
+ #cascadeTbl .casc-head{color:var(--text);font-weight:500;line-height:1.4;margin-bottom:3px}
+
+ /* Justification */
+ .justify-box{margin-top:8px;border-top:1px dashed var(--line);padding-top:6px}
+ .justify-box summary{cursor:pointer;color:var(--gold);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;list-style:none;user-select:none;padding:3px 0}
+ .justify-box summary::-webkit-details-marker{display:none}
+ .justify-box summary::before{content:"▸ ";color:var(--dim)}
+ .justify-box[open] summary::before{content:"▾ "}
+ .justify-box summary .hint{color:var(--dim);font-weight:500;letter-spacing:0;text-transform:none;font-size:10px;margin-left:6px}
+ .justify-box textarea{width:100%;margin-top:6px;background:var(--bg-2);border:1px solid var(--line);border-radius:8px;color:var(--text);font:inherit;font-size:12.5px;line-height:1.55;padding:10px 12px;resize:vertical;outline:none}
+ .justify-box textarea:focus{border-color:var(--gold)}
+
+ /* Saved Variations */
+ .vars-bar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:6px}
+ .vars-bar .chip{background:var(--panel);border:1px solid var(--line);color:var(--text);font-size:12px;padding:6px 12px;border-radius:999px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:all .12s}
+ .vars-bar .chip:hover{border-color:var(--gold);color:var(--gold-2)}
+ .vars-bar .chip.active{background:linear-gradient(180deg,var(--gold),var(--gold-2));color:#fffcf7;border-color:transparent;font-weight:600}
+ .vars-bar .chip .x{color:var(--dim);font-size:11px;margin-left:4px}
+ .vars-bar .chip:hover .x{color:var(--danger)}
+ .vars-bar .lbl{color:var(--dim);font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;margin-right:4px}
+
+ /* Tiles comparison panel */
+ .tiles-diff{display:flex;gap:24px;flex-wrap:wrap;align-items:center;margin-top:14px;padding:14px 18px;background:var(--panel-2);border:1px solid var(--line);border-radius:10px}
+ .tiles-diff .td-item .lbl,.tiles-diff .td-delta .lbl{font-size:10px;letter-spacing:.18em;color:var(--dim);text-transform:uppercase;font-weight:600}
+ .tiles-diff .td-item .val,.tiles-diff .td-delta .val{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;margin-top:2px;font-variant-numeric:tabular-nums}
+ .tiles-diff .td-sep{color:var(--dim);font-size:22px;align-self:center}
+ .tiles-diff .td-delta{padding:10px 16px;border-radius:8px}
+ .tiles-diff .td-delta.pos{background:rgba(252,165,165,.08);border:1px solid rgba(252,165,165,.2)}
+ .tiles-diff .td-delta.neg{background:rgba(134,239,172,.08);border:1px solid rgba(134,239,172,.2)}
+ input.tile-cost{background:var(--bg-2);border:1px solid var(--line-2);color:var(--gold-2);font:inherit;font-size:13px;font-weight:600;width:110px;padding:6px 10px;border-radius:8px;text-align:right;font-variant-numeric:tabular-nums;outline:none;transition:border-color .12s}
+ input.tile-cost:focus{border-color:var(--gold)}
+ input.tile-total{background:var(--panel);border:1px solid var(--accent);color:var(--accent);font:inherit;font-size:13px;font-weight:700;width:130px;padding:6px 10px;border-radius:8px;text-align:right;font-variant-numeric:tabular-nums;outline:none;transition:border-color .12s}
+ input.tile-total:focus{border-color:var(--gold)}
+ .actuals-section .sec-head{border-bottom-color:var(--accent)}
+ .actuals-section .sec-head .t{color:var(--accent)}
+ .actuals-section .sec-head .t small{color:var(--accent);opacity:.75}
+ .actuals-section .sec-head .tt{color:var(--accent)}
+ .actuals-section{background:linear-gradient(to right,rgba(42,95,136,.045),rgba(42,95,136,.01));border-left:4px solid rgba(42,95,136,.4);padding:4px 16px 12px 16px;margin-left:-20px;border-radius:0 10px 10px 0;margin-top:22px}
+ .section-divider{display:flex;align-items:center;gap:20px;margin:48px 0 8px;color:var(--accent);font-size:15px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;font-family:'Cormorant Garamond',serif}
+ .section-divider::before,.section-divider::after{content:'';flex:1;height:2px;background:linear-gradient(to right,rgba(42,95,136,.4),rgba(42,95,136,.06))}
+ .section-divider::after{background:linear-gradient(to left,rgba(42,95,136,.4),rgba(42,95,136,.06))}
+ .tbl tr.tentative-row td{background:rgba(184,134,11,.07);font-style:italic;color:var(--warn)}
+
+ /* Payment Schedule */
+ input.pay-recv{background:var(--bg-2);border:1px solid var(--line-2);color:var(--good);font:inherit;font-size:13px;font-weight:600;width:120px;padding:6px 10px;border-radius:8px;text-align:right;font-variant-numeric:tabular-nums;outline:none;transition:border-color .12s}
+ input.pay-recv:focus{border-color:var(--good)}
+ .pay-summary{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px;margin:18px 0 6px}
+ .pay-section .sec-head{border-bottom-color:var(--good)}
+ .pay-section .sec-head .t{color:var(--good)}
+ .pay-section .sec-head .t small{color:var(--good);opacity:.75}
+ .pay-section .sec-head .tt{color:var(--good);font-size:16px;font-family:Inter;font-weight:600}
+ .pay-section{border-left:3px solid rgba(30,107,50,.25);padding-left:12px;margin-left:-15px}
+</style>
+</head>
+<body>
+<div class="pdf-overlay" id="pdfOverlay">Generating premium PDF<span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+<div class="wrap">
+
+ <!-- HERO -->
+ <header class="hero">
+   <div>
+     <div class="eyebrow">Maya Architects · Bangalore · 10 Oct 2024</div>
+     <h1 class="title">Residence of <em>Mr. Pankaj</em></h1>
+     <div class="subtitle">Bill of Quantities — Interactive Edition. Edit highlighted quantities to recalculate totals in real time.</div>
+     <div class="meta">
+       <div><b>Architect</b>Maya Architects</div>
+       <div><b>Consultant</b>Devkumar</div>
+       <div><b>Location</b>Bangalore</div>
+       <div><b>Built-up Area</b>~5,200 sft</div>
+     </div>
+   </div>
+   <div class="grandbox">
+     <div class="lbl">Grand Total (Civil + Finishing)</div>
+     <div class="val"><span class="cur">₹</span><span id="grandTotal">0</span></div>
+     <div class="row"><span>Civil + 7% Electrical</span><span id="civilAfter">₹0</span></div>
+     <div class="row"><span>Finishing + 7% Plumbing</span><span id="finAfter">₹0</span></div>
+     <div class="row"><span>Per sft (5,200 sft)</span><span id="perSft">₹0</span></div>
+     <div class="delta" id="deltaNote">Matches original estimate.</div>
+   </div>
+ </header>
+
+ <!-- TOOLBAR -->
+ <div class="toolbar">
+   <div class="search">
+     <span style="color:var(--dim);font-size:14px">⌕</span>
+     <input id="search" placeholder="Search items (e.g. marble, steel, plastering)…" />
+   </div>
+   <button class="btn" id="saveBtn">💾 Save version</button>
+   <button class="btn" id="resetBtn">↺ Reset</button>
+   <button class="btn" id="printBtn">⎙ Print</button>
+   <button class="btn" id="exportBtn">⇩ JSON</button>
+   <button class="btn primary" id="pdfBtn">⇩ Download PDF</button>
+ </div>
+ <div class="vars-bar" id="varsBar"></div>
+
+ <!-- LAYOUT -->
+ <div class="layout">
+
+   <!-- MAIN -->
+   <main>
+
+     <!-- BASIC RATES -->
+     <div class="card" style="margin-bottom:22px">
+       <h3>Basic Rates Considered <span class="badge">Materials</span></h3>
+       <div class="rates" id="rateGrid"></div>
+     </div>
+
+     <!-- DYNAMIC SECTIONS INSERTED HERE -->
+     <div id="sections"></div>
+
+     <!-- DIVIDER: BOQ vs Actuals -->
+     <div class="section-divider">Actual Works &amp; Additional Claims</div>
+
+     <!-- TILES / FLOORING ACTUAL BREAKDOWN -->
+     <section class="boq actuals-section" id="tilesSec">
+       <div class="sec-head">
+         <div class="t">Flooring — Actual Cost Breakdown <small>Marble · Tiles · vs BOQ Section H</small></div>
+         <div class="tt" id="tilesGrandTotal">₹0</div>
+       </div>
+       <div id="tilesContent"></div>
+     </section>
+
+     <!-- VARIANCE: Actual vs BOQ -->
+     <section class="boq actuals-section" id="varianceSec">
+       <div class="sec-head">
+         <div class="t">Actual vs BOQ — Variance Analysis <small>From MB · 164 Additional Work</small></div>
+         <div class="tt" id="varTotal">₹0</div>
+       </div>
+       <div id="flooringVarianceGroup"></div>
+       <div id="varianceGroups"></div>
+       <div class="var-legend">
+         <span><i class="pos"></i> Only billable extras shown (actual &gt; BOQ)</span>
+         <span style="color:var(--dim)">Under-utilised items hidden · retained-margin analysis deferred to final stage</span>
+         <span>Actual qty & rate editable · CUM→Cft × 35.3147</span>
+       </div>
+     </section>
+
+     <!-- CASCADE: Ceiling height impact -->
+     <section class="boq actuals-section" id="cascadeSec">
+       <div class="sec-head">
+         <div class="t">Cascade Claims — Ceiling Height Impact <small>11ft → 13′6″ · derived items</small></div>
+         <div class="tt" id="cascadeTotal">₹0</div>
+       </div>
+       <div class="cascade-intro">
+         Height raised by <b>2′6″</b> on 3 upper floors after BOQ was frozen. This grew wall area, plastering, painting surfaces, mason labour complexity, and beam/slab shuttering. None of these are in the MB — they must be claimed separately with defensible logic. <b>All inputs below are editable.</b>
+       </div>
+       <div class="cascade-params" id="cascadeParams"></div>
+       <table class="vtbl" id="cascadeTbl">
+         <thead><tr>
+           <th style="width:34%">Derived Item</th>
+           <th style="width:36%">Calculation</th>
+           <th class="num" style="width:14%">Rate ₹</th>
+           <th class="num" style="width:16%">Claim ₹</th>
+         </tr></thead>
+         <tbody></tbody>
+       </table>
+     </section>
+
+     <!-- GRAND SUMMARY (after cascade) -->
+     <section class="boq actuals-section" id="summarySec">
+       <div class="sec-head">
+         <div class="t">Final Summary <small>Variance + Cascade · client bill</small></div>
+       </div>
+       <div class="var-summary" id="varSummary"></div>
+     </section>
+
+     <!-- PAYMENT SCHEDULE -->
+     <section class="boq pay-section" id="paymentSec">
+       <div class="sec-head">
+         <div class="t">Payment Schedule <small>Order Total · ₹1,73,74,266</small></div>
+         <div class="tt" id="paymentReceived"></div>
+       </div>
+       <div id="paymentContent"></div>
+     </section>
+
+   </main>
+
+   <!-- SIDE -->
+   <aside class="side">
+     <div class="card">
+       <h3>Abstract <span class="badge">Live</span></h3>
+       <div class="abs" id="abstract"></div>
+     </div>
+   </aside>
+ </div>
+
+ <footer class="foot">
+   <div>All amounts in INR. Quantities marked <i>R.O.</i> are rate-only (measured on actual).</div>
+ </footer>
+</div>
+
+<script>
+/* =====================================================
+   BOQ DATA — verbatim from Excel (Abstract / BOQ sheets)
+   ===================================================== */
+
+const BASIC_RATES = [
+  {k:"Cement (UltraTech/Eq.)", v:430, u:"per Bag"},
+  {k:"Steel (Indus / JSW)", v:72000, u:"per MT"},
+  {k:"River Sand", v:110, u:"per Cft"},
+  {k:"Aggregates — 20mm", v:25, u:"per Cft"},
+  {k:"AVS Blocks 8″", v:65, u:"each"},
+  {k:"AVS Blocks 6″", v:53, u:"each"},
+  {k:"AVS Blocks 4″", v:43, u:"each"},
+  {k:"Red Bricks 4″", v:11, u:"each"},
+  {k:"M-Sand", v:42, u:"per Cft"},
+  {k:"Plastering M-Sand", v:72, u:"per Cft"},
+  {k:"RMC M25 (RMC India)", v:4700, u:"per Cum"},
+  {k:"Teak Wood", v:4000, u:"per Cft"},
+  {k:"Honne Wood", v:3000, u:"per Cft"},
+  {k:"Italian Marble", v:270, u:"per Sft"},
+  {k:"Granite", v:130, u:"per Sft"},
+  {k:"Solid Wooden Flooring", v:550, u:"per Sft"},
+  {k:"Vitrified Tiles", v:70, u:"per Sft"},
+  {k:"Anti-skid Tiles", v:70, u:"per Sft"},
+  {k:"Dadoing Glazed Tiles", v:70, u:"per Sft"},
+];
+
+/* Each item:
+   {code, desc, qty, unit, rate, ro=rate-only (no qty), grp=group header, sub=sub-group label} */
+
+const SECTIONS = [
+ {id:"A", title:"Excavation", code:"A", electric:false, items:[
+   {grp:"Excavation & Earthwork"},
+   {code:"A1a", desc:"Excavation up to 1.5 M in all kinds of soil — mass, plinth, foundations, trenches, footings, retaining walls. Includes shoring/strutting/dewatering & disposal.", qty:6187.83, unit:"Cft", rate:10},
+   {code:"A1b", desc:"Excavation 1.5 M to 3 M (deeper foundations).", qty:5494.83, unit:"Cft", rate:15},
+   {code:"A2", desc:"Refilling excavated earth in foundations/trenches/footings/plinth in 20cm layers, watered, tamped & consolidated to required level (flooring & foundations).", qty:9091.39575, unit:"Cft", rate:10},
+   {code:"A3", desc:"Refilling with borrowed earth.", qty:0, unit:"Cft", rate:12, ro:true},
+   {code:"A4", desc:"Debris / earth moving out from site.", qty:248.91425, unit:"Cft", rate:30},
+ ]},
+ {id:"B", title:"Concrete", code:"B", items:[
+   {grp:"Plain Cement Concrete"},
+   {sub:"B1 — PCC 1:4:8 (40mm aggregate) in foundation / below flooring"},
+   {code:"B1a", desc:"Below Foundations", qty:124.52682, unit:"Cft", rate:125},
+   {code:"B1b", desc:"Below Footing", qty:281.27286, unit:"Cft", rate:125},
+   {code:"B1c", desc:"Below Flooring", qty:534.77632, unit:"Cft", rate:125},
+   {sub:"B2 — PCC 1:3:6, 75mm thick (20mm aggregate) over plinth / window sills / bed blocks"},
+   {code:"B2a", desc:"Over SS Masonry", qty:28.58625, unit:"Cft", rate:150},
+   {code:"B2b", desc:"Window Sill", qty:38.5, unit:"Cft", rate:150},
+   {code:"B2c", desc:"Above Cinder", qty:243.57, unit:"Sft", rate:150},
+
+   {grp:"Reinforced Cement Controlled Concrete"},
+   {sub:"B3 — M-30 OPC (IS-269) in footings, strip footings, footing beams, pedestals"},
+   {code:"B3a", desc:"Isolated Footings", qty:1605.68825, unit:"Cft", rate:270},
+   {code:"B3b", desc:"Pedestals (M-20 grade)", qty:45, unit:"Cft", rate:285},
+   {sub:"B4 — M-30 in Roof Beams"},
+   {code:"B4a", desc:"Ground Floor", qty:324.915, unit:"Cft", rate:265},
+   {code:"B4b", desc:"First Floor", qty:288.5, unit:"Cft", rate:265},
+   {code:"B4c", desc:"Second Floor", qty:353.985, unit:"Cft", rate:275},
+   {code:"B4d", desc:"Terrace Floor", qty:277.166, unit:"Cft", rate:275},
+   {code:"B4e", desc:"Above Terrace", qty:86.41, unit:"Cft", rate:285},
+   {sub:"B5 — M-30 in Lintels"},
+   {code:"B5a", desc:"Ground Floor", qty:42.95768, unit:"Cft", rate:290},
+   {code:"B5b", desc:"First Floor", qty:52.937945, unit:"Cft", rate:290},
+   {code:"B5c", desc:"Second Floor", qty:60.88023, unit:"Cft", rate:300},
+   {code:"B5d", desc:"Terrace Floor", qty:60.514725, unit:"Cft", rate:300},
+   {code:"B5e", desc:"Above Terrace", qty:20.8325, unit:"Cft", rate:310},
+   {sub:"B6 — M-30 in Columns"},
+   {code:"B6a", desc:"Ground Floor", qty:318.2625, unit:"Cft", rate:290},
+   {code:"B6b", desc:"First Floor", qty:178.125, unit:"Cft", rate:290},
+   {code:"B6c", desc:"Second Floor", qty:166.25, unit:"Cft", rate:300},
+   {code:"B6d", desc:"Terrace Floor", qty:166.25, unit:"Cft", rate:300},
+   {code:"B6e", desc:"Above Terrace", qty:105.625, unit:"Cft", rate:310},
+   {code:"B7", desc:"M-30 for Plinth Beam.", qty:218.04675, unit:"Cft", rate:320},
+   {sub:"B8 — M-20 in Roof Slabs (inc. sunken, landings, balconies, canopies)"},
+   {code:"B8a", desc:"Ground Floor", qty:756.2225, unit:"Cft", rate:260},
+   {code:"B8b", desc:"First Floor", qty:671.2255, unit:"Cft", rate:260},
+   {code:"B8c", desc:"Second Floor", qty:711.1555, unit:"Cft", rate:270},
+   {code:"B8d", desc:"Terrace Floor", qty:573.056, unit:"Cft", rate:270},
+   {code:"B8e", desc:"Above Terrace", qty:128.7, unit:"Cft", rate:180, ro:true},
+   {code:"B9", desc:"M-20 Folded-plate staircase steps (all floors).", qty:437.198, unit:"Sft", rate:285},
+   {code:"B10", desc:"M-20 for RCC fins / chajjas / facias / drops — 75-100mm thk with drip moulds, cornice.", qty:68, unit:"Sft", rate:290},
+ ]},
+ {id:"C", title:"Steel Fabrication", code:"C", items:[
+   {code:"C1", desc:"Mild steel reinforcement (IS 434 / IS 1786) for all RCC works. Includes cutting, bending, cranking, fabricating, tying with 16-gauge binding wire, pre-cast cover blocks, all leads & handling. Rolling margin included.", qty:32.495705, unit:"MT", rate:88000},
+ ]},
+ {id:"D", title:"Masonry", code:"D", items:[
+   {code:"D1", desc:"Size Stone Masonry (SSM) in CM 1:6 for foundation — horizontally laid, hammer-dressed face stones, bond stones ≤ 2 M apart.", qty:0, unit:"Cft", rate:125, ro:true},
+   {sub:"D2 — 6″ thick Block Masonry in CM 1:6 (super-structure walls/pilasters)"},
+   {code:"D2a", desc:"Ground Floor", qty:1325.617, unit:"Sft", rate:125},
+   {code:"D2b", desc:"First Floor", qty:1033.971, unit:"Sft", rate:125},
+   {code:"D2c", desc:"Second Floor", qty:401.58, unit:"Sft", rate:125},
+   {code:"D2d", desc:"Terrace Floor", qty:1657.385, unit:"Sft", rate:125},
+   {code:"D2e", desc:"Above Terrace", qty:610.01, unit:"Sft", rate:125},
+   {sub:"D3 — 4″ thick Block Masonry in CM 1:6"},
+   {code:"D3a", desc:"Ground Floor", qty:569.924, unit:"Sft", rate:115},
+   {code:"D3b", desc:"First Floor", qty:307.1635, unit:"Sft", rate:115},
+   {code:"D3c", desc:"Second Floor", qty:401.58, unit:"Sft", rate:115},
+   {code:"D3d", desc:"Terrace Floor", qty:371.6565, unit:"Sft", rate:115},
+   {code:"D4", desc:"8″ thick Block Masonry in CM 1:6 — walls, foundation, pilasters.", qty:346.5, unit:"Sft", rate:150},
+   {code:"D5", desc:"Window 4″ thick fin wall.", qty:0, unit:"Sft", rate:100, ro:true},
+ ]},
+ {id:"E", title:"Plastering", code:"E", items:[
+   {code:"E1", desc:"12mm ceiling / soffit plaster in CM 1:4 with curing. Includes aluminium mesh at junctions + 10mm C-channel.", qty:4450.19, unit:"Sft", rate:42},
+   {code:"E2", desc:"External wall plaster, 20mm in two coats (CM 1:5) with 2% waterproofing compound; sponge / sand polish finish.", qty:12417.977, unit:"Sft", rate:45},
+   {code:"E3", desc:"Internal wall plaster, 20mm thick in CM 1:6.", qty:12054.3005, unit:"Sft", rate:40},
+   {code:"E4", desc:"Rough plastering behind dadoing.", qty:1363.956, unit:"Sft", rate:40},
+ ]},
+ {id:"F", title:"Weather Proofing", code:"F", items:[
+   {code:"F1", desc:"Terrace slab + 150mm side-wall waterproofing: CM 1:3 + Conplast X421IC at junctions, 2 coats Brushbond RFX (Fosroc), cement screed to slope. 10-year bond guarantee.", qty:1375, unit:"Sft", rate:55},
+   {code:"F2", desc:"Toilet sunken waterproofing — CeTroof / equivalent, brick-bats in WPC 1:5 to slope + 2 coats Brushbond RFX.", qty:459.189, unit:"Sft", rate:55},
+ ]},
+ {id:"M", title:"Miscellaneous Civil Works", code:"M", items:[
+   {code:"M1", desc:"Pre-construction anti-termite treatment (IS spec) to foundation & plinth.", qty:1670, unit:"Sft", rate:7},
+   {code:"M2", desc:"40mm CC flagging 1:2:4 with 12mm granite aggregate, laid in ≤2.5sm panels, slope/fall as required.", qty:175, unit:"Sft", rate:60},
+   {code:"M3", desc:"13,000 L sump tank — 6″ RCC walls, waterproof plaster, 5″ RCC top slab with 2′x2′ checker-plate cover.", qty:13000, unit:"Litre", rate:8},
+   {sub:"M4 — Compound Wall (2½′ excavation, 3″ PCC, SSM, DPC, 5′6″ 6″-block masonry, plaster + paint)"},
+   {code:"M4a", desc:"Earth Work", qty:1043.75, unit:"Cft", rate:10},
+   {code:"M4b", desc:"PCC 1:4:8", qty:110.22, unit:"Cft", rate:135},
+   {code:"M4c", desc:"Size Stone Masonry", qty:551.1, unit:"Cft", rate:125},
+   {code:"M4d", desc:"DPC", qty:82.665, unit:"Cft", rate:185},
+   {code:"M4e", desc:"6″ Block work", qty:560, unit:"Sft", rate:125},
+   {code:"M4f", desc:"Plastering", qty:1120, unit:"Sft", rate:45},
+   {code:"M4g", desc:"Painting", qty:1120, unit:"Sft", rate:20},
+   {code:"M5", desc:"Cinder filling for sunken slab + top CM 1:4 finish to slope.", qty:365.355, unit:"Cft", rate:80},
+   {code:"M6", desc:"600mm soling with 50mm sand cushion, mechanically compacted, hand-broken granite + moorum binder.", qty:0, unit:"Cft", rate:160, ro:true},
+ ]},
+
+ /* ===== FINISHING ===== */
+ {id:"G", title:"Carpentry & Joinery", code:"G", finishing:true, items:[
+   {code:"G1", desc:"Burma Teak main door & pooja door — 6×3 frame, 40mm flush door with 12mm teak overlay both sides. MS hold-fasts embedded in CC 1:3:6. (Hardware ₹100/sft; Teak ₹4000/cft — excl. main door lock.)", qty:92, unit:"Sft", rate:2500},
+   {code:"G1a", desc:"Pooja door — as above with glass shutter.", qty:32, unit:"Sft", rate:2250},
+   {code:"G2", desc:"40mm flush door with both-side veneer cladding, teak frame 3×5, MS hold-fasts. Internal + toilet doors with aluminium fittings. (Hardware ₹100/sft; Veneer ₹110/sft; flush door ₹140/sft.)", qty:266, unit:"Sft", rate:1500},
+   {code:"G3", desc:"30mm flush door — 6mm front teak veneer + back laminate, teak frame 3×5. (Veneer ₹100/sft; flush door ₹130/sft; Teak basic ₹4500/cft.)", qty:130, unit:"Sft", rate:1400},
+   {code:"G4", desc:"Teak frame windows & ventilators — 5×3 frame, 4mm glass, 3×1¼ honne shutter, aluminium fittings. (Hardware ₹45/sft.)", qty:680.75, unit:"Sft", rate:900},
+   {code:"G4a", desc:"3-track UPVC windows with glass + mosquito shutter (architect selection).", qty:0, unit:"Sft", rate:650, ro:true},
+   {code:"G5", desc:"Making & fixing doors including clamps.", qty:0, unit:"Sft", rate:350, ro:true},
+   {code:"G6", desc:"3″ × 1.5″ wood frame for fixing window grills.", qty:0, unit:"Sft", rate:350, ro:true},
+   {code:"G7", desc:"Door frame beading as per detail.", qty:0, unit:"Rft", rate:25, ro:true},
+ ]},
+ {id:"H", title:"Flooring", code:"H", finishing:true, items:[
+   {code:"H1", desc:"Polished Italian Marble flooring — 20mm, machine-cut on 25mm CM 1:5 bed; epoxy coating & floor protection (Bedrooms / Kitchen / Dining / Foyer / Living / Pooja / Family / Common). Basic ₹375/sft.", qty:0, unit:"Sft", rate:650, ro:true},
+   {code:"H1a", desc:"Base cement+sand for marble flooring & skirting.", qty:0, unit:"Sft", rate:50, ro:true},
+   {code:"H1b", desc:"Wall cladding works.", qty:0, unit:"Sft", rate:275, ro:true},
+   {code:"H1c", desc:"Granite works base material.", qty:0, unit:"Sft", rate:50, ro:true},
+   {code:"H2", desc:"Polished Italian Marble skirting 20mm with chamfer.", qty:0, unit:"Rft", rate:0, ro:true},
+   {sub:"H3 — Internal Staircase (20mm Granite — single-piece tread, 40mm nosing)"},
+   {code:"H3a", desc:"Risers (Granite)", qty:356, unit:"Rft", rate:250},
+   {code:"H3b", desc:"Treads (Granite)", qty:356, unit:"Sft", rate:250},
+   {code:"H3c", desc:"Skirting (Granite)", qty:162, unit:"Rft", rate:250},
+   {code:"H3d", desc:"Landings (Granite)", qty:73.93, unit:"Sft", rate:250},
+   {code:"H4", desc:"Polished Granite flooring 20mm — entry deck. Basic ₹140/sft.", qty:73, unit:"Sft", rate:220},
+   {code:"H5", desc:"Polished Granite skirting 20mm with chamfer.", qty:222.31, unit:"Rft", rate:0, ro:true},
+   {code:"H6", desc:"Tile flooring (carpark) — laid on 20-25mm CM 1:5. Basic ₹100/sft.", qty:603.75, unit:"Sft", rate:165},
+   {code:"H6a", desc:"Tile skirting 100mm height.", qty:110.083, unit:"Rft", rate:100},
+   {code:"H7a", desc:"Ceramic tile dadoing — glazed/matt 1st quality on CM 1:3 + plaster base. Includes cutouts for switches/fittings. (Toilets & Utility). Basic ₹70/sft.", qty:1363.956, unit:"Sft", rate:150},
+   {sub:"H8 — Vitrified Tile Flooring"},
+   {code:"H8a", desc:"Bedroom vitrified tiles", qty:3556.89, unit:"Sft", rate:165},
+   {code:"H8b", desc:"Toilet flooring", qty:315.05, unit:"Sft", rate:165},
+   {code:"H9", desc:"Vitrified tile skirting (bedrooms).", qty:968.639, unit:"Rft", rate:165},
+   {code:"H10", desc:"Solid wooden flooring — profile + skirting (M. Bedroom). Basic ₹550/sft.", qty:0, unit:"Sft", rate:650, ro:true},
+   {code:"H10a", desc:"Wooden skirting (as above).", qty:0, unit:"Rft", rate:650, ro:true},
+   {code:"H10b", desc:"PCC 1:3:6, 50mm thick base for wooden flooring.", qty:0, unit:"Sft", rate:95, ro:true},
+   {code:"H11", desc:"Edge polishing for granite / marble edges.", qty:740.31, unit:"Rft", rate:25},
+   {code:"H12", desc:"Granite 40mm making & edge polish (45° cut).", qty:356, unit:"Rft", rate:25},
+   {code:"H13", desc:"Granite edge chamfering & polishing.", qty:740.31, unit:"Rft", rate:25},
+   {code:"H14", desc:"Stone slabs over front drains. Basic ₹120/sft.", qty:136, unit:"Sft", rate:185},
+   {code:"H15", desc:"Granite kitchen & wash counter. Basic ₹190/sft.", qty:55, unit:"Sft", rate:250},
+   {code:"H16", desc:"20mm Granite coping — parapet & balcony. Basic ₹85/sft.", qty:0, unit:"Sft", rate:235, ro:true},
+   {code:"H17", desc:"20mm White Marble flooring — Pooja room.", qty:25, unit:"Sft", rate:1000},
+   {code:"H18", desc:"20mm White Marble dado — Pooja room.", qty:140, unit:"Sft", rate:1000},
+ ]},
+ {id:"I", title:"Metal Works", code:"I", finishing:true, items:[
+   {code:"I1", desc:"SS handrailing for staircase & balconies / terrace parapet — 12mm toughened glass + SS studs on wall & floor.", qty:118.166, unit:"Rft", rate:1700},
+   {code:"I1a", desc:"SS handrailing for staircase — 50mm dia round SS tube welded to side walls.", qty:79, unit:"Rft", rate:900},
+   {code:"I2", desc:"Brite-bar grills for windows / ventilators — brite-rod connectors + 12mm dia brite rods (verticals & horizontals).", qty:680.75, unit:"Sft", rate:250},
+   {code:"I3", desc:"MS safety grill — utility — 6×32mm bright flat @ 2′0″ c/c + 12mm dia bright rods @ 5″ c/c.", qty:163.75, unit:"Sft", rate:250},
+   {code:"I4", desc:"MS grill door with 25×25mm angle frame & locking mechanism.", qty:0, unit:"Sft", rate:250, ro:true},
+   {code:"I5", desc:"MS gate — box-section frame with locking mechanism + one-side 8mm Shera board.", qty:180, unit:"Sft", rate:600},
+   {code:"I5a", desc:"Motorised ceiling-folding MS gate.", qty:0, unit:"Sft", rate:0, ro:true},
+   {code:"I6", desc:"MS duct cover — 20×20mm box sections + 8mm flexi Shera board covering.", qty:150, unit:"Sft", rate:600},
+   {code:"I7", desc:"Spiral ladder to terrace (10′0″) — MS tubes.", qty:0, unit:"LS", rate:40000, ro:true},
+   {code:"I8", desc:"SS 3′0″ tube railing for external staircase.", qty:0, unit:"Rft", rate:1250, ro:true},
+ ]},
+ {id:"J", title:"Painting", code:"J", finishing:true, items:[
+   {code:"J1", desc:"Plastic emulsion paint (approved make) with sponge finish — ceilings & internal walls, over cement/distemper primer, 2+ coats.", qty:16504.4905, unit:"Sft", rate:20},
+   {code:"J2", desc:"Apex Ultima waterproof paint — external walls, sponge finish + primer + putty.", qty:12417.977, unit:"Sft", rate:25},
+   {code:"J3", desc:"Synthetic enamel paint (2 coats) + primer + putty.", qty:1594.5, unit:"Sft", rate:0, ro:true},
+   {code:"J4", desc:"Melamine polish — all doors & windows.", qty:2596.5, unit:"Sft", rate:220},
+   {code:"J4a", desc:"Door / window frame joint beading polishing.", qty:0, unit:"Rft", rate:235, ro:true},
+   {code:"J5", desc:"White-cement scratch-finish plaster with paint.", qty:0, unit:"Sft", rate:20, ro:true},
+ ]},
+ {id:"K", title:"Miscellaneous Finishing", code:"K", finishing:true, items:[
+   {code:"K1", desc:"MS skylight — L-angle frame + 50×100 tube @ 300mm c/c, glass blocks with silicon sealant, fixed to masonry using PCC 1:3:6.", qty:53, unit:"Sft", rate:600},
+   {code:"K2", desc:"MS pergola — 2″×4″ box section @ 22″ c/c, yellow-oxide primer, fixed to masonry with PCC 1:3:6.", qty:233.5, unit:"Sft", rate:550},
+   {code:"K3", desc:"4″ AAC Block masonry in CM 1:6 — walls, pilasters.", qty:120, unit:"Sft", rate:160},
+   {code:"K4", desc:"HPL board cladding to size — aluminium back supports + sealants. External ceiling / front & side elevations.", qty:748.25, unit:"Sft", rate:300},
+   {code:"K5", desc:"Polished 20mm Marble cladding — machine-cut on 25mm CM 1:5 bed + epoxy coating.", qty:636.875, unit:"Sft", rate:650},
+   {code:"K6", desc:"White-cement texture finish plaster with paint.", qty:602.25, unit:"Sft", rate:50},
+ ]},
+];
+
+/* ====================================================
+   TILES / FLOORING — Actual cost breakdown (from spreadsheet)
+   ==================================================== */
+const TILES_CALC = [
+  {area:"Common Areas and Stairs",            material:"Marble",  matSqft:1950, instSqft:2730, matCost:1072500, labourCost:327600, otherCharges:141600, instMatCharges:273000, total:1819380},
+  {area:"Bedrooms, Bathrooms and other areas", material:"Tiles",   matSqft:3572, instSqft:5001, matCost:467815,  labourCost:300048, otherCharges:0,       instMatCharges:0,       total:776436},
+  {area:"Ground Floor Flooring",               material:"Tiles",   matSqft:960,  instSqft:1344, matCost:52800,   labourCost:80640,  otherCharges:0,       instMatCharges:0,       total:135744},
+  {area:"Granite for common stairs",           material:"Granite", matSqft:250,  instSqft:350,  matCost:37500,   labourCost:26250,  otherCharges:0,       instMatCharges:0,       total:64350},
+];
+
+/* ====================================================
+   ACTUAL vs BOQ — Variance data (from 164 Additional Work.xlsx)
+   Actuals converted CUM → Cft at 35.3147 where applicable.
+   boq  = BOQ estimated qty  |  act = actual on-site qty
+   rate is best-fit from main BOQ (editable on page)
+   ==================================================== */
+const VARIANCE_GROUPS = [
+  {id:"exc", title:"Excavation & PCC", items:[
+    {d:"Excavation (footings + UG sump)", unit:"Cft", boq:11682.66, act:6244.99, rate:12.35, ref:"BOQ A1a (₹10) + A1b (₹15) · blended rate"},
+    {d:"PCC 1:4:8 (all locations incl. plinth beam)", unit:"Cft", boq:940.58, act:391.64, rate:125, ref:"BOQ B1a+b+c vs MB PCC 294.52 + Plinth PCC 97.12 combined"},
+  ]},
+  {id:"rcc", title:"RCC Concrete", items:[
+    {d:"Footing concrete (M-30)", unit:"Cft", boq:1605.69, act:1858.97, rate:270, ref:"B3a"},
+    {d:"Pedestal concrete (M-20)", unit:"Cft", boq:45, act:140.55, rate:285, ref:"B3b"},
+    {d:"Plinth beam concrete (M-30)", unit:"Cft", boq:218.05, act:280.75, rate:320, ref:"B7"},
+    {d:"Column concrete — Ground Floor", unit:"Cft", boq:318.26, act:183.28, rate:290, ref:"B6a"},
+    {d:"Column concrete — First Floor", unit:"Cft", boq:178.13, act:199.17, rate:290, ref:"B6b"},
+    {d:"Column concrete — Second Floor", unit:"Cft", boq:166.25, act:199.88, rate:300, ref:"B6c"},
+    {d:"Column concrete — Third / Terrace Floor", unit:"Cft", boq:166.25, act:171.28, rate:300, ref:"B6d"},
+    {d:"Lintel concrete (GF + FF + SF)", unit:"Cft", boq:156.77, act:211.54, rate:293, ref:"B5a+b+c · avg rate"},
+    {d:"Slab concrete — GF roof", unit:"Cft", boq:756.22, act:1107.82, rate:260, ref:"B8a"},
+    {d:"Slab concrete — FF roof", unit:"Cft", boq:671.23, act:977.51, rate:260, ref:"B8b"},
+    {d:"Slab concrete — SF roof", unit:"Cft", boq:711.16, act:918.89, rate:270, ref:"B8c"},
+  ]},
+  {id:"steel", title:"Steel Reinforcement", items:[
+    {d:"Mild steel — footing", unit:"MT", boq:0, act:4.76, rate:88000, ref:"Informational — part of C1 total", info:true},
+    {d:"Mild steel — plinth beam", unit:"MT", boq:0, act:0.75, rate:88000, ref:"Informational — part of C1 total", info:true},
+    {d:"Mild steel — column up to plinth", unit:"MT", boq:0, act:2.09, rate:88000, ref:"Informational — part of C1 total", info:true},
+    {d:"Mild steel — column GF", unit:"MT", boq:0, act:2.30, rate:88000, ref:"Informational — part of C1 total", info:true},
+    {d:"Mild steel — column FF", unit:"MT", boq:0, act:2.19, rate:88000, ref:"Informational — part of C1 total", info:true},
+    {d:"Mild steel — column SF", unit:"MT", boq:0, act:2.22, rate:88000, ref:"Informational — part of C1 total", info:true},
+    {d:"Mild steel — lintel (GF+FF+SF)", unit:"MT", boq:0, act:1.14, rate:88000, ref:"Informational — part of C1 total", info:true},
+    {d:"Mild steel — staircase", unit:"MT", boq:0, act:1.19, rate:88000, ref:"Informational — part of C1 total", info:true},
+    {d:"Mild steel — GF roof slab", unit:"MT", boq:0, act:3.44, rate:88000, ref:"Informational — part of C1 total", info:true},
+    {d:"Mild steel — FF roof slab", unit:"MT", boq:0, act:5.43, rate:88000, ref:"Informational — part of C1 total", info:true},
+    {d:"Mild steel — SF roof slab", unit:"MT", boq:0, act:4.16, rate:88000, ref:"Informational — part of C1 total", info:true},
+    {d:"C1 — Total steel reconciliation vs BOQ", unit:"MT", boq:32.495705, act:29.67, rate:88000, ref:"BOQ total C1 vs sum of actual rows · ONLY this row counts toward variance", rollup:true},
+  ]},
+  {id:"block", title:"Block Masonry", items:[
+    {d:"6″ Block — Ground Floor", unit:"Sft", boq:1325.617, act:1153.96, rate:125, ref:"D2a"},
+    {d:"6″ Block — First Floor", unit:"Sft", boq:1033.971, act:1287.95, rate:125, ref:"D2b"},
+    {d:"6″ Block — Second Floor", unit:"Sft", boq:401.58, act:828.64, rate:125, ref:"D2c"},
+    {d:"4″ Block — Ground Floor", unit:"Sft", boq:569.924, act:770.78, rate:115, ref:"D3a"},
+    {d:"4″ Block — First Floor", unit:"Sft", boq:307.1635, act:483.80, rate:115, ref:"D3b"},
+    {d:"4″ Block — Second Floor", unit:"Sft", boq:401.58, act:836.60, rate:115, ref:"D3c"},
+  ]},
+];
+
+/* ====================================================
+   CASCADE CLAIMS — Ceiling Height Impact (11ft → 13′6″)
+   ==================================================== */
+const CASCADE_PARAMS = [
+  {k:"Height Change", v:"11′ → 13′6″"},
+  {k:"Δ per Floor", v:"+ 2′6″"},
+  {k:"Floors Affected", v:"3"},
+  {k:"Wall-Area Increase", v:"2,320 Sft"},
+  {k:"Mason Escalation", v:"35k → 42k/sqm · +20%"},
+];
+
+const CASCADE_ITEMS = [
+  {d:"Additional External Plastering (E2)", calc:"Wall-area increase × ₹45/Sft", qty:2320, unit:"Sft", rate:45,
+    justify:"Wall surface area on 3 upper floors grew by 2,320 Sft after ceiling height was raised from 11′ to 13′6″. Additional external plastering measured at BOQ E2 rate (₹45/Sft)."},
+  {d:"Additional Internal Plastering (E3)", calc:"Wall-area increase × ₹40/Sft", qty:2320, unit:"Sft", rate:40,
+    justify:"Corresponding internal plaster area increase on the inner face of external walls + both faces of new internal walls. Billed at BOQ E3 rate (₹40/Sft)."},
+  {d:"Additional External Painting — Apex Ultima (J2)", calc:"Wall-area increase × ₹25/Sft", qty:2320, unit:"Sft", rate:25,
+    justify:"External Apex Ultima paint follows plastered area 1:1. Additional 2,320 Sft billed at BOQ J2 rate (₹25/Sft), including putty + primer + two coats."},
+  {d:"Additional Internal Painting — Emulsion (J1)", calc:"Wall-area increase × ₹20/Sft", qty:2320, unit:"Sft", rate:20,
+    justify:"Internal emulsion paint on additional wall area. Billed at BOQ J1 rate (₹20/Sft). Scope unchanged — only area increased."},
+  {d:"Mason rate escalation — all masonry (BOQ + MB additional)", calc:"₹11,73,904 × 20% (35k → 42k/sqm)", qty:1, unit:"LS", rate:234781,
+    justify:"Mason sub-contractor revised labour rate from ₹35,000/sqm to ₹42,000/sqm (+20%) after ceiling height change, citing heavier scaffolding, greater lifting effort, and complexity from the 3′ beam drop. Uplift applies to full masonry scope executed — BOQ item D (₹8,70,333) plus additional MB quantities (₹3,03,571). Evidence: mason's revised rate quotation on letterhead."},
+  {d:"Shuttering / centering premium (3ft beam drop)", calc:"Complexity premium — taller staging, deeper beams", qty:1, unit:"LS", rate:300000,
+    justify:"Original BOQ concrete rates assumed 11′ floor-to-floor with standard beam depths. Revised 13′6″ height with 3′ beam drop required taller double-staging, heavier props, and additional shuttering ply/sheet inventory. Item was flagged as 'Pending from Dhanush' in the original additional-costing sheet."},
+  {d:"Additional staircase steps — granite tread + riser + skirting", calc:"2.5′/floor ÷ 6″ rise ≈ 5 steps × 3 floors = 15", qty:15, unit:"step", rate:4500,
+    justify:"Floor-to-floor height increased by 2′6″ on 3 flights. At 6″ riser, each flight requires ~5 additional steps (15 total). Rate covers granite tread + riser + side skirting as per BOQ H3."},
+  {d:"Additional staircase SS handrail along new steps (I1a)", calc:"~1 Rft per extra step × ₹900", qty:15, unit:"Rft", rate:900,
+    justify:"SS 50mm tube handrail (BOQ I1a @ ₹900/Rft) runs along the new steps. 15 additional steps × ~1 Rft slope length each."},
+  {d:"Scaffolding & staging premium (height beyond 11′)", calc:"Rental days, inventory, safety — taller façade", qty:1, unit:"LS", rate:150000,
+    justify:"Scaffolding cost is not linear with height — taller façade needs cross-bracing, additional tie-backs, edge protection, and longer rental duration. This lump sum covers the incremental rental + material over the 11′ baseline assumed in BOQ item rates."},
+  {d:"Electrical vertical-run top-up (beyond BOQ 7%)", calc:"Longer conduit/wire runs on 3 floors", qty:1, unit:"LS", rate:100000,
+    justify:"BOQ provision of 7% flat for electrical was sized against 11′ floor height. With 13′6″ height, vertical conduit runs in walls (switches, points, DBs, rising mains) each became 2′6″ longer on 3 floors — ~25% more running metre of conduit + wire for verticals. This top-up covers the shortfall."},
+  {d:"Plumbing vertical-stack top-up (beyond BOQ 7%)", calc:"Longer soil/waste/water stacks on 3 floors", qty:1, unit:"LS", rate:50000,
+    justify:"Same logic as electrical — BOQ 7% flat for plumbing sized for 11′ heights. Soil, waste, vent, water-supply and hot-water stacks on 3 floors each grew 2′6″. Top-up covers additional pipe lengths, supports, and lagging."},
+];
+
+/* ================= RENDERING ================= */
+const SECTION_TITLES = {
+  A:"A · Excavation", B:"B · Concrete", C:"C · Steel Fabrication", D:"D · Masonry",
+  E:"E · Plastering", F:"F · Weather Proofing", M:"M · Miscellaneous Civil",
+  G:"G · Carpentry & Joinery", H:"H · Flooring", I:"I · Metal Works",
+  J:"J · Painting", K:"K · Miscellaneous Finishing",
+};
+
+const fmt = n => (isFinite(n)?n:0).toLocaleString('en-IN',{maximumFractionDigits:0});
+const fmt2 = n => (isFinite(n)?n:0).toLocaleString('en-IN',{maximumFractionDigits:2});
+
+function renderRates(){
+  const g = document.getElementById('rateGrid');
+  g.innerHTML = BASIC_RATES.map(r=>`
+    <div class="rate">
+      <div class="k">${r.k}</div>
+      <div class="v">₹${fmt(r.v)}<span class="u">${r.u}</span></div>
+    </div>`).join('');
+}
+
+function renderSections(){
+  const host = document.getElementById('sections');
+  host.innerHTML = SECTIONS.map(sec=>{
+    const rows = sec.items.map((it,idx)=>{
+      if(it.grp) return `<tr class="group"><td colspan="6">${it.grp}</td></tr>`;
+      if(it.sub) return `<tr class="sub"><td colspan="6">${it.sub}</td></tr>`;
+      const id = `${sec.id}-${idx}`;
+      const ro = it.ro || !it.rate;
+      const qval = ro ? '' : it.qty;
+      return `
+        <tr data-sec="${sec.id}" data-idx="${idx}" class="${ro?'ro':''}">
+          <td class="code">${it.code||''}</td>
+          <td class="desc">${it.desc||''}</td>
+          <td class="num">
+            <div class="qcell">
+              <input type="number" step="0.001" class="qty ${ro?'ro':''}"
+                     data-original="${it.qty||0}" value="${ro?'':qval}"
+                     ${ro?'placeholder="R.O." disabled':''} />
+            </div>
+          </td>
+          <td class="unit">${it.unit||''}</td>
+          <td class="num rate-cell">${it.rate?`₹${fmt(it.rate)}`:'—'}</td>
+          <td class="num amt" id="amt-${id}">${ro?'R.O.':'₹'+fmt((it.qty||0)*(it.rate||0))}</td>
+        </tr>`;
+    }).join('');
+    return `
+      <section class="boq" data-section="${sec.id}">
+        <div class="sec-head">
+          <div class="t">${SECTION_TITLES[sec.id]} <small>${sec.finishing?'Finishing':'Civil'}</small></div>
+          <div class="tt" id="secTotal-${sec.id}">₹0</div>
+        </div>
+        <table class="tbl">
+          <thead><tr>
+            <th style="width:60px">Code</th>
+            <th>Description</th>
+            <th class="num" style="width:140px">Quantity</th>
+            <th style="width:60px">Unit</th>
+            <th class="num" style="width:100px">Rate</th>
+            <th class="num" style="width:140px">Amount (₹)</th>
+          </tr></thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </section>`;
+  }).join('');
+}
+
+function renderTilesCalc(){
+  const host = document.getElementById('tilesContent');
+  const rows = TILES_CALC.map((it,idx)=>`
+    <tr data-tidx="${idx}">
+      <td class="desc">${it.area}</td>
+      <td class="unit">${it.material}</td>
+      <td class="num" style="color:var(--muted)">${fmt(it.matSqft)}</td>
+      <td class="num" style="color:var(--muted)">${fmt(it.instSqft)}</td>
+      <td class="num"><input type="number" step="1" class="tile-cost" data-field="matCost" data-original="${it.matCost}" value="${it.matCost}" /></td>
+      <td class="num"><input type="number" step="1" class="tile-cost" data-field="labourCost" data-original="${it.labourCost}" value="${it.labourCost}" /></td>
+      <td class="num"><input type="number" step="1" class="tile-cost" data-field="otherCharges" data-original="${it.otherCharges}" value="${it.otherCharges||''}" placeholder="—" /></td>
+      <td class="num"><input type="number" step="1" class="tile-cost" data-field="instMatCharges" data-original="${it.instMatCharges}" value="${it.instMatCharges||''}" placeholder="—" /></td>
+      <td class="num"><input type="number" step="1" class="tile-total" data-original="${it.total}" value="${it.total}" /></td>
+    </tr>`).join('');
+  host.innerHTML = `
+    <table class="tbl">
+      <thead><tr>
+        <th style="width:22%">Area</th>
+        <th style="width:8%">Material</th>
+        <th class="num" style="width:8%">Mat. Sqft</th>
+        <th class="num" style="width:8%">Inst. Sqft</th>
+        <th class="num" style="width:12%">Material Cost ₹</th>
+        <th class="num" style="width:11%">Labour Cost ₹</th>
+        <th class="num" style="width:10%">Other Charges ₹</th>
+        <th class="num" style="width:12%">Inst. Material ₹</th>
+        <th class="num" style="width:9%">Total ₹</th>
+      </tr></thead>
+      <tbody>${rows}</tbody>
+      <tfoot>
+        <tr class="group">
+          <td colspan="4">Total</td>
+          <td class="num" id="tile-sum-mat">₹0</td>
+          <td class="num" id="tile-sum-lab">₹0</td>
+          <td class="num" id="tile-sum-oth">—</td>
+          <td class="num" id="tile-sum-inst">—</td>
+          <td class="num" id="tile-sum-total">₹0</td>
+        </tr>
+      </tfoot>
+    </table>
+    <div id="tilesVsBoq" class="tiles-diff"></div>`;
+}
+
+function recalcTiles(){
+  let sumMat=0, sumLab=0, sumOth=0, sumInst=0, grand=0;
+  TILES_CALC.forEach((it,idx)=>{
+    const tr = document.querySelector(`tr[data-tidx="${idx}"]`);
+    if(!tr) return;
+    const mc = parseFloat(tr.querySelector('[data-field="matCost"]').value)||0;
+    const lc = parseFloat(tr.querySelector('[data-field="labourCost"]').value)||0;
+    const oc = parseFloat(tr.querySelector('[data-field="otherCharges"]').value)||0;
+    const ic = parseFloat(tr.querySelector('[data-field="instMatCharges"]').value)||0;
+    sumMat+=mc; sumLab+=lc; sumOth+=oc; sumInst+=ic;
+    const tInput = tr.querySelector('input.tile-total');
+    grand += tInput ? (parseFloat(tInput.value)||0) : (mc+lc+oc+ic);
+  });
+  document.getElementById('tile-sum-mat').textContent  = '₹'+fmt(sumMat);
+  document.getElementById('tile-sum-lab').textContent  = '₹'+fmt(sumLab);
+  document.getElementById('tile-sum-oth').textContent  = sumOth  ? '₹'+fmt(sumOth)  : '—';
+  document.getElementById('tile-sum-inst').textContent = sumInst ? '₹'+fmt(sumInst) : '—';
+  document.getElementById('tile-sum-total').textContent = '₹'+fmt(grand);
+  document.getElementById('tilesGrandTotal').textContent = '₹'+fmt(grand);
+  window.__TILES_TOT = grand;
+
+  const boqH = window.__BOQH_TOT||0;
+  const diff  = grand - boqH;
+  const isPos = diff > 0;
+  const diffSign = isPos ? '+' : '−';
+  const diffColor = isPos ? '#c0302a' : '#1e6b32';
+
+  const panel = document.getElementById('tilesVsBoq');
+  if(panel) panel.innerHTML = `
+    <div class="td-item"><div class="lbl">BOQ Section H (Flooring)</div><div class="val" style="color:var(--muted)">₹${fmt(boqH)}</div></div>
+    <div class="td-sep">→</div>
+    <div class="td-item"><div class="lbl">Actual Flooring Cost</div><div class="val" style="color:var(--gold-2)">₹${fmt(grand)}</div></div>
+    <div class="td-sep">=</div>
+    <div class="td-delta ${isPos?'pos':'neg'}">
+      <div class="lbl">${isPos?'Additional cost':'Saving'} vs BOQ H</div>
+      <div class="val" style="color:${diffColor}">${diffSign}₹${fmt(Math.abs(diff))}</div>
+    </div>`;
+
+  const fvg = document.getElementById('flooringVarianceGroup');
+  if(fvg) fvg.innerHTML = `
+    <div class="var-group">
+      <h4>Flooring — Actual Cost vs BOQ Section H <span>${diffSign} ₹${fmt(Math.abs(diff))}</span></h4>
+      <div class="tiles-diff">
+        <div class="td-item"><div class="lbl">BOQ Section H (Flooring)</div><div class="val" style="color:var(--muted)">₹${fmt(boqH)}</div></div>
+        <div class="td-sep">→</div>
+        <div class="td-item"><div class="lbl">Actual Flooring Cost</div><div class="val" style="color:var(--gold-2)">₹${fmt(grand)}</div></div>
+        <div class="td-sep">=</div>
+        <div class="td-delta ${isPos?'pos':'neg'}">
+          <div class="lbl">${isPos?'Additional cost (over BOQ)':'Saving vs BOQ'}</div>
+          <div class="val" style="color:${diffColor}">${diffSign}₹${fmt(Math.abs(diff))}</div>
+        </div>
+      </div>
+    </div>`;
+
+  renderGrandSummary();
+}
+
+function renderCascade(){
+  const params = document.getElementById('cascadeParams');
+  params.innerHTML = CASCADE_PARAMS.map(p=>`
+    <div class="cparam"><div class="k">${p.k}</div><div class="v">${p.v}</div></div>`).join('');
+  const tb = document.querySelector('#cascadeTbl tbody');
+  tb.innerHTML = CASCADE_ITEMS.map((it,idx)=>`
+    <tr data-cidx="${idx}">
+      <td class="desc">
+        <div class="casc-head">${it.d}</div>
+        <small style="color:var(--dim)">${it.calc}</small>
+        <details class="justify-box">
+          <summary>Justification <span class="hint">· click to edit</span></summary>
+          <textarea class="casc-just" data-original="${(it.justify||'').replace(/"/g,'&quot;')}" rows="4">${it.justify||''}</textarea>
+        </details>
+      </td>
+      <td class="desc" style="color:var(--muted)">
+        <input type="number" step="0.01" class="casc-qty" data-original="${it.qty}" value="${it.qty}" />
+        <span style="color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.08em;margin-left:6px">${it.unit}</span>
+      </td>
+      <td class="num"><input type="number" step="1" class="casc-rate gold" data-original="${it.rate}" value="${it.rate}" /></td>
+      <td class="num add-amt" id="casc-${idx}">₹${fmt(it.qty*it.rate)}</td>
+    </tr>`).join('');
+}
+
+function recalcCascade(){
+  let total=0;
+  CASCADE_ITEMS.forEach((it,idx)=>{
+    const tr = document.querySelector(`tr[data-cidx="${idx}"]`);
+    if(!tr) return;
+    const q = parseFloat(tr.querySelector('input.casc-qty').value)||0;
+    const r = parseFloat(tr.querySelector('input.casc-rate').value)||0;
+    const a = q*r;
+    document.getElementById('casc-'+idx).textContent = '₹'+fmt(a);
+    total += a;
+  });
+  document.getElementById('cascadeTotal').textContent = '+ ₹'+fmt(total);
+  window.__CASC_TOT = total;
+  renderGrandSummary();
+}
+
+function renderVariance(){
+  const host = document.getElementById('varianceGroups');
+  host.innerHTML = VARIANCE_GROUPS.map(g=>{
+    // Only show rows where actual > BOQ (billable extras). Hide info & non-positive rows.
+    const visible = g.items
+      .map((it,idx)=>({it,idx}))
+      .filter(({it})=> !it.info && (it.act - it.boq) > 0.001);
+    if(visible.length === 0) return '';
+    const rows = visible.map(({it,idx})=>{
+      const id = `${g.id}-${idx}`;
+      const showBoqInput = it.boq > 0 || it.rollup;
+      return `
+        <tr data-vgrp="${g.id}" data-vidx="${idx}">
+          <td class="desc">${it.d}<small>${it.ref}</small></td>
+          <td class="num boq">${showBoqInput?fmt2(it.boq):'<i style="color:var(--dim)">—</i>'}</td>
+          <td class="num"><input type="number" step="0.01" class="act" data-original="${it.act}" value="${it.act}" /></td>
+          <td class="unit" style="text-transform:uppercase;letter-spacing:.1em;font-size:11px;color:var(--muted)">${it.unit}</td>
+          <td class="num" id="var-${id}">—</td>
+          <td class="num"><input type="number" step="1" class="rate" data-original="${it.rate}" value="${it.rate}" /></td>
+          <td class="num add-amt" id="add-${id}">—</td>
+        </tr>`;
+    }).join('');
+    return `
+      <div class="var-group">
+        <h4>${g.title}<span id="grp-${g.id}">₹0</span></h4>
+        <table class="vtbl">
+          <thead><tr>
+            <th style="width:34%">Description</th>
+            <th class="num" style="width:11%">BOQ Qty</th>
+            <th class="num" style="width:14%">Actual Qty</th>
+            <th style="width:6%">Unit</th>
+            <th class="num" style="width:11%">Variance</th>
+            <th class="num" style="width:10%">Rate ₹</th>
+            <th class="num" style="width:14%">Additional ₹</th>
+          </tr></thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>`;
+  }).join('');
+}
+
+function recalcVariance(){
+  let totalAdd=0, totalSave=0;
+  VARIANCE_GROUPS.forEach(g=>{
+    let grpAdd=0;
+    g.items.forEach((it,idx)=>{
+      const id=`${g.id}-${idx}`;
+      const tr = document.querySelector(`tr[data-vgrp="${g.id}"][data-vidx="${idx}"]`);
+      if(!tr) return;
+      const act = parseFloat(tr.querySelector('input.act').value)||0;
+      const rate = parseFloat(tr.querySelector('input.rate').value)||0;
+      const variance = act - it.boq;
+      const vEl = document.getElementById('var-'+id);
+      const aEl = document.getElementById('add-'+id);
+      if(it.info){
+        vEl.innerHTML = `<span style="color:var(--dim)">—</span>`;
+        aEl.innerHTML = `<span style="color:var(--dim)">info</span>`;
+        return;
+      }
+      if(Math.abs(variance) < 0.001){
+        vEl.innerHTML = '<span class="var-zero">0.00</span>';
+        aEl.innerHTML = '<span class="var-zero">—</span>';
+      } else if(variance > 0){
+        const addCost = variance*rate;
+        vEl.innerHTML = `<span class="var-pos">▲ ${fmt2(variance)}</span>`;
+        aEl.innerHTML = `<span class="var-pos">₹${fmt(addCost)}</span>`;
+        grpAdd += addCost;
+        totalAdd += addCost;
+      } else {
+        vEl.innerHTML = `<span style="color:var(--dim)">▼ ${fmt2(-variance)}</span>`;
+        aEl.innerHTML = `<span style="color:var(--dim)">—</span>`;
+      }
+    });
+    const grpEl = document.getElementById('grp-'+g.id);
+    if(grpEl) grpEl.textContent = '+ ₹'+fmt(grpAdd);
+  });
+  window.__VAR_ADD = totalAdd;
+  document.getElementById('varTotal').textContent = '+ ₹'+fmt(totalAdd);
+  renderGrandSummary();
+}
+
+function renderGrandSummary(){
+  const addV      = window.__VAR_ADD   || 0;
+  const addC      = window.__CASC_TOT  || 0;
+  const tilesAdd  = (window.__TILES_TOT||0) - (window.__BOQH_TOT||0);
+  const totalAdd  = addV + addC + tilesAdd;
+  const finalBill = ORIGINAL_GRAND + totalAdd;
+  const host = document.getElementById('varSummary');
+  if(!host) return;
+  const tSign = tilesAdd >= 0 ? '+' : '−';
+  const tCls  = tilesAdd >= 0 ? 'add' : 'save';
+  const totalRef = REFERRAL_BONUS.reduce((s,r)=>s+r.amount,0);
+  const netBill  = finalBill - totalRef;
+  host.innerHTML = `
+    <div class="var-card add">
+      <div class="k">Extras from Variance</div>
+      <div class="v">+ ₹${fmt(addV)}</div>
+      <div class="s">Actual exceeded BOQ (from MB)</div>
+    </div>
+    <div class="var-card add">
+      <div class="k">Cascade Claims</div>
+      <div class="v">+ ₹${fmt(addC)}</div>
+      <div class="s">Height-impact derived items</div>
+    </div>
+    <div class="var-card ${tCls}">
+      <div class="k">Flooring Variance</div>
+      <div class="v">${tSign} ₹${fmt(Math.abs(tilesAdd))}</div>
+      <div class="s">Actual flooring vs BOQ Section H</div>
+    </div>
+    <div class="var-card net">
+      <div class="k">Total Additional</div>
+      <div class="v">${totalAdd>=0?'+ ':'− '}₹${fmt(Math.abs(totalAdd))}</div>
+      <div class="s">Variance + cascade + flooring</div>
+    </div>
+    <div class="var-card">
+      <div class="k">Gross Bill</div>
+      <div class="v">₹${fmt(finalBill)}</div>
+      <div class="s">BOQ ₹${fmt(ORIGINAL_GRAND)} + additional</div>
+    </div>
+    <div class="var-card save">
+      <div class="k">Referral Deduction</div>
+      <div class="v">− ₹${fmt(totalRef)}</div>
+      <div class="s">${REFERRAL_BONUS.map(r=>`${r.name} ₹${fmt(r.amount)}`).join(' · ')}</div>
+    </div>
+    <div class="var-card net">
+      <div class="k">Net Bill to Client</div>
+      <div class="v">₹${fmt(netBill)}</div>
+      <div class="s">After referral deductions</div>
+    </div>`;
+}
+
+function renderPaymentSchedule(){
+  const host = document.getElementById('paymentContent');
+  if(!host) return;
+  const rows = PAYMENT_SCHEDULE.map((p,idx)=>{
+    const pending = Math.max(0, p.amount - p.received);
+    const isFullyPaid = p.received >= p.amount && p.amount > 0;
+    const isPartial   = p.received > 0 && p.received < p.amount;
+    const rowBg  = p.tentative ? '' : isFullyPaid ? 'background:rgba(30,107,50,.06)' : isPartial ? 'background:rgba(184,134,11,.05)' : '';
+    const dot    = p.tentative ? `<span style="color:var(--warn);font-size:13px">◈</span>`
+                : isFullyPaid  ? `<span style="color:#1e6b32;font-size:15px">●</span>`
+                : isPartial    ? `<span style="color:#c47210;font-size:15px">◐</span>`
+                :                `<span style="color:var(--dim);font-size:15px">○</span>`;
+    const trClass = p.tentative ? 'class="tentative-row"' : '';
+    return `<tr data-pidx="${idx}" ${trClass} style="${rowBg}">
+      <td style="padding-right:0;width:24px">${dot}</td>
+      <td class="desc">${p.milestone}${p.comment ? `<small style="color:var(--warn);margin-top:3px">${p.comment}</small>` : ''}</td>
+      <td class="num" style="color:var(--muted)">${p.pct!=null?p.pct+'%':'—'}</td>
+      <td class="num" style="color:var(--muted)">${p.cum!=null?p.cum+'%':'—'}</td>
+      <td class="num" style="color:${p.tentative?'var(--warn)':'var(--gold-2)'};font-weight:600">₹${fmt(p.amount)}</td>
+      <td class="num"><input type="number" step="1" class="pay-recv" data-original="${p.received}" value="${p.received}" /></td>
+      <td class="num" id="pay-pend-${idx}" style="color:${pending>0?'#c0302a':'#1e6b32'};font-weight:600">${pending>0?'₹'+fmt(pending):'—'}</td>
+    </tr>`;
+  }).join('');
+  host.innerHTML = `
+    <table class="tbl">
+      <thead><tr>
+        <th style="width:20px"></th>
+        <th style="width:35%">Milestone</th>
+        <th class="num" style="width:6%">%</th>
+        <th class="num" style="width:8%">Cumulative</th>
+        <th class="num" style="width:13%">Amount ₹</th>
+        <th class="num" style="width:13%">Received ₹</th>
+        <th class="num" style="width:12%">Pending ₹</th>
+      </tr></thead>
+      <tbody>${rows}</tbody>
+      <tfoot><tr class="group">
+        <td></td><td>Total</td><td class="num">100%</td><td></td>
+        <td class="num">₹${fmt(PAYMENT_ORDER_TOTAL)}</td>
+        <td class="num" id="pay-sum-recv">₹0</td>
+        <td class="num" id="pay-sum-pend">₹0</td>
+      </tr></tfoot>
+    </table>
+    <div class="pay-summary" id="paySummary"></div>`;
+  recalcPaymentSchedule();
+}
+
+function recalcPaymentSchedule(){
+  let totalRecv = 0;
+  PAYMENT_SCHEDULE.forEach((p,idx)=>{
+    const tr = document.querySelector(`tr[data-pidx="${idx}"]`);
+    if(!tr) return;
+    const inp  = tr.querySelector('input.pay-recv');
+    const recv = inp ? (parseFloat(inp.value)||0) : p.received;
+    const pending = Math.max(0, p.amount - recv);
+    const pEl  = document.getElementById('pay-pend-'+idx);
+    if(pEl){ pEl.textContent = pending>0 ? '₹'+fmt(pending) : '—'; pEl.style.color = pending>0 ? '#c0302a' : '#1e6b32'; }
+    const isFullyPaid = recv >= p.amount && p.amount > 0;
+    const isPartial   = recv > 0 && recv < p.amount;
+    if(!p.tentative){
+      tr.style.background = isFullyPaid ? 'rgba(30,107,50,.06)' : isPartial ? 'rgba(184,134,11,.05)' : '';
+      const dot = tr.querySelector('td:first-child span');
+      if(dot){ dot.textContent = isFullyPaid ? '●' : isPartial ? '◐' : '○'; dot.style.color = isFullyPaid ? '#1e6b32' : isPartial ? '#c47210' : 'var(--dim)'; }
+    }
+    totalRecv += recv;
+  });
+  const totalPend = PAYMENT_ORDER_TOTAL - totalRecv;
+  const pctRecv   = Math.round(totalRecv / PAYMENT_ORDER_TOTAL * 100);
+  const srEl = document.getElementById('pay-sum-recv');
+  const spEl = document.getElementById('pay-sum-pend');
+  if(srEl) srEl.textContent = '₹'+fmt(totalRecv);
+  if(spEl){ spEl.textContent = '₹'+fmt(Math.max(0,totalPend)); spEl.style.color = totalPend>0?'#c0302a':'#1e6b32'; }
+  const hEl = document.getElementById('paymentReceived');
+  if(hEl) hEl.textContent = '₹'+fmt(totalRecv)+' received · ₹'+fmt(Math.max(0,totalPend))+' pending';
+  const host = document.getElementById('paySummary');
+  if(host) host.innerHTML = `
+    <div class="var-card save">
+      <div class="k">Total Received</div>
+      <div class="v">₹${fmt(totalRecv)}</div>
+      <div class="s">${pctRecv}% of order total</div>
+    </div>
+    <div class="var-card ${totalPend>0?'add':'save'}">
+      <div class="k">Balance Pending</div>
+      <div class="v">₹${fmt(Math.max(0,totalPend))}</div>
+      <div class="s">${100-pctRecv}% remaining</div>
+    </div>
+    <div class="var-card net">
+      <div class="k">Order Total</div>
+      <div class="v">₹${fmt(PAYMENT_ORDER_TOTAL)}</div>
+      <div class="s">Per contract</div>
+    </div>`;
+}
+
+function renderAbstract(){
+  const host = document.getElementById('abstract');
+  const civilIds = ['A','B','C','D','E','F','M'];
+  const finIds = ['G','H','I','J','K'];
+  host.innerHTML = `
+    <h4>Civil Works</h4>
+    ${civilIds.map(id=>`
+      <div class="line">
+        <div class="code">${id}.</div>
+        <div>${SECTION_TITLES[id].replace(/^[A-Z] · /,'')}</div>
+        <div class="amt" id="abs-${id}">₹0</div>
+      </div>`).join('')}
+    <div class="sub"><span>Civil Work Total</span><b id="civilTotal">₹0</b></div>
+    <div class="sub"><span>Add 7% Electrical</span><b id="civilElec">₹0</b></div>
+    <div class="sub total"><span>Civil + Electrical</span><b id="civilAfterSide">₹0</b></div>
+
+    <h4 style="margin-top:22px">Finishing Works</h4>
+    ${finIds.map(id=>`
+      <div class="line">
+        <div class="code">${id}.</div>
+        <div>${SECTION_TITLES[id].replace(/^[A-Z] · /,'')}</div>
+        <div class="amt" id="abs-${id}">₹0</div>
+      </div>`).join('')}
+    <div class="sub"><span>Finishing Total</span><b id="finTotal">₹0</b></div>
+    <div class="sub"><span>Add 7% Plumbing</span><b id="finPlumb">₹0</b></div>
+    <div class="sub total"><span>Finishing + Plumbing</span><b id="finAfterSide">₹0</b></div>
+
+    <div class="sub total" style="margin-top:16px;border-top:1px solid var(--gold);padding-top:14px"><span>Grand Total</span><b id="grandSide">₹0</b></div>
+  `;
+}
+
+/* ================= CALCULATION ================= */
+const ORIGINAL_GRAND = 14838095.76; // from Abstract sheet row 27
+const REFERRAL_BONUS = [
+  {name:"Keshav",     pct:2, base:10920000, amount:218400},
+  {name:"Nav Chetan", pct:2, base:12325950, amount:246519},
+];
+
+/* ================= PAYMENT SCHEDULE ================= */
+const PAYMENT_ORDER_TOTAL = 17374266;
+const PAYMENT_SCHEDULE = [
+  {milestone:"Booking / Contract Signing",                                                                    pct:10,   cum:10,  amount:1483800, received:1483800, comment:""},
+  {milestone:"Completion of Excavation, Foundation and Plinth Level",                                         pct:15,   cum:25,  amount:2225700, received:2225700, comment:""},
+  {milestone:"Completion of Ground Floor Slab",                                                               pct:10,   cum:35,  amount:1483800, received:1483800, comment:""},
+  {milestone:"Completion of 1st Floor Slab",                                                                  pct:10,   cum:45,  amount:1483800, received:1483800, comment:""},
+  {milestone:"Completion of 2nd Floor Slab",                                                                  pct:10,   cum:55,  amount:1483800, received:1483800, comment:""},
+  {milestone:"Completion of 3rd Floor Slab",                                                                  pct:10,   cum:65,  amount:1483800, received:1483800, comment:""},
+  {milestone:"Completion of Brick Work and Internal Plastering",                                              pct:15,   cum:80,  amount:2225700, received:1305300, comment:"Marble advance — cost difference pending update."},
+  {milestone:"Completion of Exterior Plastering, Flooring, Doors & Windows Frames",                          pct:10,   cum:90,  amount:1483800, received:      0, comment:""},
+  {milestone:"Completion of Doors & Windows Installation, Painting, Electrical and Plumbing",                pct: 5,   cum:95,  amount: 741900, received:      0, comment:""},
+  {milestone:"Handover and Possession",                                                                       pct: 0,   cum:100, amount: 741900, received:      0, comment:""},
+  {milestone:"Overall Addition (Tentative)",                                                                  pct:null, cum:null,amount:2536266, received:      0, comment:"Additional works claim — tentative, subject to final verification.", tentative:true},
+];
+
+function recalc(){
+  const secTotals = {};
+  let changedAny = false;
+  document.querySelectorAll('tr[data-sec]').forEach(tr=>{
+    const sec = tr.dataset.sec, idx = +tr.dataset.idx;
+    const item = SECTIONS.find(s=>s.id===sec).items[idx];
+    const input = tr.querySelector('input.qty');
+    if(!input || input.disabled){
+      secTotals[sec] = (secTotals[sec]||0);
+      return;
+    }
+    const v = parseFloat(input.value)||0;
+    const amt = v * (item.rate||0);
+    const orig = parseFloat(input.dataset.original)||0;
+    if(Math.abs(v-orig) > 0.0001){ tr.classList.add('changed'); changedAny = true; }
+    else tr.classList.remove('changed');
+    const amtCell = tr.querySelector('td.amt');
+    amtCell.textContent = '₹'+fmt(amt);
+    secTotals[sec] = (secTotals[sec]||0) + amt;
+  });
+
+  // section totals
+  SECTIONS.forEach(s=>{
+    const t = secTotals[s.id]||0;
+    const el = document.getElementById('secTotal-'+s.id);
+    if(el) el.textContent = '₹'+fmt(t);
+    const abs = document.getElementById('abs-'+s.id);
+    if(abs) abs.textContent = '₹'+fmt(t);
+  });
+
+  const civilIds=['A','B','C','D','E','F','M'];
+  const finIds=['G','H','I','J','K'];
+  const civil = civilIds.reduce((s,id)=>s+(secTotals[id]||0),0);
+  const fin = finIds.reduce((s,id)=>s+(secTotals[id]||0),0);
+  const civilElec = civil*0.07, civilAfter = civil+civilElec;
+  const finPlumb = fin*0.07, finAfter = fin+finPlumb;
+  const grand = civilAfter + finAfter;
+
+  document.getElementById('civilTotal').textContent='₹'+fmt(civil);
+  document.getElementById('civilElec').textContent='₹'+fmt(civilElec);
+  document.getElementById('civilAfterSide').textContent='₹'+fmt(civilAfter);
+  document.getElementById('finTotal').textContent='₹'+fmt(fin);
+  document.getElementById('finPlumb').textContent='₹'+fmt(finPlumb);
+  document.getElementById('finAfterSide').textContent='₹'+fmt(finAfter);
+  document.getElementById('grandSide').textContent='₹'+fmt(grand);
+
+  document.getElementById('grandTotal').textContent=fmt(grand);
+  document.getElementById('civilAfter').textContent='₹'+fmt(civilAfter);
+  document.getElementById('finAfter').textContent='₹'+fmt(finAfter);
+  document.getElementById('perSft').textContent='₹'+fmt(grand/5200);
+
+  const delta = grand - ORIGINAL_GRAND;
+  const note = document.getElementById('deltaNote');
+  if(Math.abs(delta) < 1) note.textContent = 'Matches original estimate exactly.';
+  else if(delta>0) note.innerHTML = `<span style="color:var(--warn)">▲ ₹${fmt(delta)} above</span> original ₹${fmt(ORIGINAL_GRAND)} — ${(delta/ORIGINAL_GRAND*100).toFixed(2)}%`;
+  else note.innerHTML = `<span style="color:var(--good)">▼ ₹${fmt(-delta)} below</span> original ₹${fmt(ORIGINAL_GRAND)} — ${(-delta/ORIGINAL_GRAND*100).toFixed(2)}%`;
+
+  window.__BOQH_TOT = secTotals['H']||0;
+  recalcTiles();
+}
+
+/* ================= EVENTS ================= */
+function wireEvents(){
+  document.addEventListener('input', e=>{
+    if(e.target.matches('input.qty')) recalc();
+    if(e.target.matches('input.act, input.rate')) recalcVariance();
+    if(e.target.matches('input.casc-qty, input.casc-rate')) recalcCascade();
+    if(e.target.matches('input.tile-cost')){
+      const tr = e.target.closest('tr');
+      if(tr){
+        const mc = parseFloat(tr.querySelector('[data-field="matCost"]').value)||0;
+        const lc = parseFloat(tr.querySelector('[data-field="labourCost"]').value)||0;
+        const oc = parseFloat(tr.querySelector('[data-field="otherCharges"]').value)||0;
+        const ic = parseFloat(tr.querySelector('[data-field="instMatCharges"]').value)||0;
+        const tInput = tr.querySelector('input.tile-total');
+        if(tInput) tInput.value = mc+lc+oc+ic;
+      }
+      recalcTiles();
+    }
+    if(e.target.matches('input.tile-total')) recalcTiles();
+    if(e.target.matches('input.pay-recv')) recalcPaymentSchedule();
+  });
+  document.getElementById('resetBtn').addEventListener('click', ()=>{
+    document.querySelectorAll('input.qty, input.act, input.rate, input.casc-qty, input.casc-rate, input.tile-cost, input.tile-total, input.pay-recv').forEach(i=>{
+      if(i.disabled) return;
+      i.value = i.dataset.original;
+    });
+    recalc(); recalcVariance(); recalcCascade(); recalcPaymentSchedule();
+  });
+  document.getElementById('printBtn').addEventListener('click', ()=>window.print());
+  document.getElementById('saveBtn').addEventListener('click', saveVersion);
+  document.getElementById('varsBar').addEventListener('click', e=>{
+    const del = e.target.closest('[data-del]');
+    if(del){ e.stopPropagation(); deleteVersion(del.dataset.del); return; }
+    const chip = e.target.closest('[data-ver]');
+    if(chip) loadVersion(chip.dataset.ver);
+  });
+  document.getElementById('pdfBtn').addEventListener('click', async ()=>{
+    const overlay = document.getElementById('pdfOverlay');
+    const btn = document.getElementById('pdfBtn');
+    overlay.classList.add('on');
+    btn.disabled = true;
+    document.documentElement.classList.add('pdf-mode-html');
+    document.body.classList.add('pdf-mode');
+    // Expand all justifications and swap textarea → div so full text renders
+    const details = document.querySelectorAll('.justify-box');
+    const prevOpen = [...details].map(d=>d.open);
+    details.forEach(d=>d.open = true);
+    const swaps = [];
+    document.querySelectorAll('textarea.casc-just').forEach(ta=>{
+      const div = document.createElement('div');
+      div.className = 'pdf-just-text';
+      div.textContent = ta.value;
+      ta.style.display = 'none';
+      ta.parentElement.insertBefore(div, ta.nextSibling);
+      swaps.push({ta, div});
+    });
+    window.scrollTo(0,0);
+    await new Promise(r=>setTimeout(r,200));
+    try{
+      const el = document.querySelector('.wrap');
+      const opt = {
+        margin:[8,6,10,6],
+        filename:'Pankaj-Residence-BOQ.pdf',
+        image:{type:'png', quality:1.0},
+        html2canvas:{
+          scale:2, useCORS:true, backgroundColor:'#0b0d12',
+          windowWidth:1240, letterRendering:true, logging:false,
+          scrollX:0, scrollY:0, x:0, y:0,
+          onclone:(clonedDoc)=>{
+            // Ensure clone gets the dark background applied
+            clonedDoc.documentElement.style.background = '#0b0d12';
+            clonedDoc.body.style.background = '#0b0d12';
+            clonedDoc.body.style.backgroundImage = 'none';
+            clonedDoc.body.style.backgroundAttachment = 'scroll';
+          }
+        },
+        jsPDF:{unit:'mm', format:'a4', orientation:'landscape', compress:true},
+        pagebreak:{
+          mode:['css','legacy','avoid-all'],
+          before:['.boq','.hero+.layout>main>.card'],
+          avoid:['tr','.card','.sec-head','.grandbox','.var-group','.var-card','.cparam','.rate','.justify-box','.cascade-intro','.sub']
+        }
+      };
+      await html2pdf().set(opt).from(el).save();
+    }catch(e){
+      alert('PDF generation failed: '+e.message+'\n\nFalling back to browser print (choose "Save as PDF").');
+      window.print();
+    }finally{
+      swaps.forEach(({ta, div})=>{ ta.style.display = ''; div.remove(); });
+      details.forEach((d,i)=>d.open = prevOpen[i]);
+      document.body.classList.remove('pdf-mode');
+      document.documentElement.classList.remove('pdf-mode-html');
+      overlay.classList.remove('on');
+      btn.disabled = false;
+    }
+  });
+  document.getElementById('exportBtn').addEventListener('click', ()=>{
+    const out = SECTIONS.map(s=>({
+      section: SECTION_TITLES[s.id],
+      items: s.items.filter(i=>i.code).map((i,idx)=>{
+        const tr = document.querySelector(`tr[data-sec="${s.id}"][data-idx="${s.items.indexOf(i)}"]`);
+        const inp = tr && tr.querySelector('input.qty');
+        const q = inp && !inp.disabled ? parseFloat(inp.value)||0 : i.qty;
+        return {code:i.code,description:i.desc,qty:q,unit:i.unit,rate:i.rate,amount:q*(i.rate||0),rate_only:!!i.ro};
+      })
+    }));
+    const blob = new Blob([JSON.stringify(out,null,2)],{type:'application/json'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob); a.download='pankaj-boq.json'; a.click();
+  });
+  const search = document.getElementById('search');
+  search.addEventListener('input', ()=>{
+    const q = search.value.toLowerCase().trim();
+    document.querySelectorAll('tr[data-sec]').forEach(tr=>{
+      const txt = tr.innerText.toLowerCase();
+      tr.style.display = (!q || txt.includes(q))?'':'none';
+    });
+  });
+}
+
+/* ================= SAVED VERSIONS ================= */
+const STORAGE_KEY = 'pankaj-boq-versions-v1';
+
+function snapshot(){
+  const data = {
+    ts: Date.now(),
+    qty: [...document.querySelectorAll('input.qty')].map(i=>({sec:i.closest('tr').dataset.sec, idx:i.closest('tr').dataset.idx, v:i.value, d:!!i.disabled})),
+    act: [...document.querySelectorAll('input.act')].map(i=>({g:i.closest('tr').dataset.vgrp, idx:i.closest('tr').dataset.vidx, v:i.value})),
+    rate: [...document.querySelectorAll('input.rate')].map(i=>({g:i.closest('tr').dataset.vgrp, idx:i.closest('tr').dataset.vidx, v:i.value})),
+    cq: [...document.querySelectorAll('input.casc-qty')].map(i=>({idx:i.closest('tr').dataset.cidx, v:i.value})),
+    cr: [...document.querySelectorAll('input.casc-rate')].map(i=>({idx:i.closest('tr').dataset.cidx, v:i.value})),
+    cj: [...document.querySelectorAll('textarea.casc-just')].map(i=>({idx:i.closest('tr').dataset.cidx, v:i.value})),
+    tc: [...document.querySelectorAll('input.tile-cost')].map(i=>({idx:i.closest('tr').dataset.tidx, f:i.dataset.field, v:i.value})),
+    tt: [...document.querySelectorAll('input.tile-total')].map(i=>({idx:i.closest('tr').dataset.tidx, v:i.value})),
+    pr: [...document.querySelectorAll('input.pay-recv')].map(i=>({idx:i.closest('tr').dataset.pidx, v:i.value})),
+  };
+  return data;
+}
+
+function restore(data){
+  if(!data) return;
+  (data.qty||[]).forEach(x=>{
+    const el = document.querySelector(`tr[data-sec="${x.sec}"][data-idx="${x.idx}"] input.qty`);
+    if(el && !el.disabled) el.value = x.v;
+  });
+  (data.act||[]).forEach(x=>{
+    const el = document.querySelector(`tr[data-vgrp="${x.g}"][data-vidx="${x.idx}"] input.act`);
+    if(el) el.value = x.v;
+  });
+  (data.rate||[]).forEach(x=>{
+    const el = document.querySelector(`tr[data-vgrp="${x.g}"][data-vidx="${x.idx}"] input.rate`);
+    if(el) el.value = x.v;
+  });
+  (data.cq||[]).forEach(x=>{
+    const el = document.querySelector(`tr[data-cidx="${x.idx}"] input.casc-qty`);
+    if(el) el.value = x.v;
+  });
+  (data.cr||[]).forEach(x=>{
+    const el = document.querySelector(`tr[data-cidx="${x.idx}"] input.casc-rate`);
+    if(el) el.value = x.v;
+  });
+  (data.cj||[]).forEach(x=>{
+    const el = document.querySelector(`tr[data-cidx="${x.idx}"] textarea.casc-just`);
+    if(el) el.value = x.v;
+  });
+  (data.tc||[]).forEach(x=>{
+    const el = document.querySelector(`tr[data-tidx="${x.idx}"] [data-field="${x.f}"]`);
+    if(el) el.value = x.v;
+  });
+  (data.tt||[]).forEach(x=>{
+    const el = document.querySelector(`tr[data-tidx="${x.idx}"] input.tile-total`);
+    if(el) el.value = x.v;
+  });
+  (data.pr||[]).forEach(x=>{
+    const el = document.querySelector(`tr[data-pidx="${x.idx}"] input.pay-recv`);
+    if(el) el.value = x.v;
+  });
+  recalc(); recalcVariance(); recalcCascade(); recalcPaymentSchedule();
+}
+
+function getVersions(){
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}'); }
+  catch { return {}; }
+}
+function setVersions(v){ localStorage.setItem(STORAGE_KEY, JSON.stringify(v)); }
+
+let ACTIVE_VER = null;
+function renderVersions(){
+  const bar = document.getElementById('varsBar');
+  const versions = getVersions();
+  const names = Object.keys(versions).sort();
+  if(names.length === 0){
+    bar.innerHTML = '<span class="lbl">Saved versions</span><span style="color:var(--dim);font-size:12px;font-style:italic">None yet — click "Save version" to snapshot the current state</span>';
+    return;
+  }
+  bar.innerHTML = '<span class="lbl">Saved</span>' + names.map(n=>{
+    const d = new Date(versions[n].ts);
+    const dstr = d.toLocaleDateString('en-IN',{day:'2-digit',month:'short'}) + ' ' + d.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});
+    const active = ACTIVE_VER===n ? 'active' : '';
+    return `<button class="chip ${active}" data-ver="${n.replace(/"/g,'&quot;')}" title="Saved ${dstr}">${n}<span class="x" data-del="${n.replace(/"/g,'&quot;')}">✕</span></button>`;
+  }).join('');
+}
+
+function saveVersion(){
+  const name = prompt('Name this version (e.g. "v1 — initial claim", "after client feedback"):');
+  if(!name || !name.trim()) return;
+  const vers = getVersions();
+  if(vers[name.trim()] && !confirm(`"${name.trim()}" already exists. Overwrite?`)) return;
+  vers[name.trim()] = snapshot();
+  setVersions(vers);
+  ACTIVE_VER = name.trim();
+  renderVersions();
+}
+function loadVersion(name){
+  const vers = getVersions();
+  if(!vers[name]) return;
+  restore(vers[name]);
+  ACTIVE_VER = name;
+  renderVersions();
+}
+function deleteVersion(name){
+  if(!confirm(`Delete saved version "${name}"? This cannot be undone.`)) return;
+  const vers = getVersions();
+  delete vers[name];
+  setVersions(vers);
+  if(ACTIVE_VER===name) ACTIVE_VER = null;
+  renderVersions();
+}
+
+/* ================= BOOT ================= */
+renderRates();
+renderSections();
+renderTilesCalc();
+renderCascade();
+renderVariance();
+renderPaymentSchedule();
+renderAbstract();
+renderVersions();
+wireEvents();
+recalc();
+recalcVariance();
+recalcCascade();
+</script>
+</body>
+</html>
